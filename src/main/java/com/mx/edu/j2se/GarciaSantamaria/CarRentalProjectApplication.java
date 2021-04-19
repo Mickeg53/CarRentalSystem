@@ -13,16 +13,11 @@ import java.sql.SQLException;
 @RestController
 public class CarRentalProjectApplication {
 
-	@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
-	}
-
 	public static void main(String[] args) {
-		SpringApplication.run(CarRentalProjectApplication.class, args);
+		//SpringApplication.run(CarRentalProjectApplication.class, args);
 
-		//Conection to database
-		String url = "jdbc:mysql://localhost:3306/carrentaldb";
+		//Connection to database
+		String url = "jdbc:mysql://localhost:3306/carrentaldb"; //Need to change the database name
 		String userName = "root";
 		String password = "123456789";
 
@@ -36,4 +31,11 @@ public class CarRentalProjectApplication {
 			e.printStackTrace();
 		}
 	}
+
+	//Test of the springBootApplication
+
+	/*@GetMapping("/hello")
+	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+		return String.format("Hello %s!", name);
+	}*/
 }
