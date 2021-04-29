@@ -8,16 +8,52 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootApplication
 @RestController
 public class CarRentalProjectApplication {
 
+    public interface CarDaoInterface{
+        public List<CarPOJO> getAllCarsAvailable(LocalDateTime startTime, LocalDateTime returnTime, String classs);
+        void save(CarPOJO carPOJO);
+        void delete(CarPOJO carPOJO);
+		void update(CarPOJO carPOJO);
+    }
+
+	public interface ReservDaoInterface{
+		public List<ReservationPOJO> getReservationStatus(int reservationId);
+		void save(ReservationPOJO reservationPOJO);
+		void delete(ReservationPOJO reservationPOJO);
+		void update(ReservationPOJO reservationPOJO);
+	}
+
+	public interface ClientDaoInterface{
+		public ClientPOJO getClient(int clientId);
+		void save(ClientPOJO clientPOJO);
+		void delete(ClientPOJO clientPOJO);
+		void update(ClientPOJO clientPOJO);
+	}
+
+	public interface EmployeeDaoInterface{
+		public EmployeePOJO getEmployee(int employeeId);
+		void save(EmployeePOJO employeePOJO);
+		void delete(EmployeePOJO employeePOJO);
+		void update(EmployeePOJO employeePOJO);
+	}
+
+	public interface AddresDaoInterface{
+		public AddressPOJO getAddress(int addressId);
+		void save(AddressPOJO addressPOJO);
+		void delete(AddressPOJO addressPOJO);
+		void update(AddressPOJO addressPOJO);
+	}
+
 	public static void main(String[] args) {
 		//SpringApplication.run(CarRentalProjectApplication.class, args);
 
 		//Connection to database
-		String url = "jdbc:mysql://localhost:3306/carrentaldb"; //Need to change the database name
+		String url = "jdbc:mysql://localhost:3306/carrentaldb";
 		String userName = "root";
 		String password = "123456789";
 
@@ -37,35 +73,8 @@ public class CarRentalProjectApplication {
 			stmt = connection.createStatement();
 
 			switch(opt){
-				case 1:
-					//CASE TO SHOW ALL AVAILABLE CARS BASED ON PARAMETERS ENTERED BY USER(START/END && CLASS)
-					rs = stmt.executeQuery("SELECT * FROM car c \n" +
-                            "\tLEFT JOIN reservation r USING (License_plate)\n" +
-                            "\t\tWHERE (Id_reservation IS NULL OR (r.Start_date > '"+to+"' OR r.Return_date < '"+from+"')) AND c.Class = 'Compact'");
-					rs.next();
-
-					do{
-						System.out.println("LIST OF ALL CARS AVAILABLE BASED ON START/END && CLASS PARAMETERS");
-						System.out.println(rs.getString("License_plate") + "\t Brand: " + rs.getString("Brand") +
-								"\t\t Sub_brand: " + rs.getString("Sub_brand")+ "\t Class: " + rs.getString("Class") +
-								"\t Year_model: " + rs.getString("Year_model")+ "\t Price: " + rs.getString("Price"));
-					}while(rs.next());
-				break;
-
 				case 2:
-					//CASE TO SHOW THE RESERVATION STATUS BASED ON RESERVATION_ID
-					rs = stmt.executeQuery("SELECT r.Id_reservation, r.Start_date, r.Return_date, c.Brand, c.Sub_brand, c.Class, c.Year_model, r.License_plate, c.Price, r.Id_employee FROM reservation r\n" +
-							"\tLEFT JOIN car c ON c.License_plate = r.License_plate\n" +
-							"\tWHERE r.Id_reservation = '5'");
-					rs.next();
-					do{
-						System.out.println("RESERVATION STATUS");
-						System.out.println("ID " + rs.getString("Id_reservation") + "\t FROM: " + rs.getString("Start_date") +
-								"\t TO: " + rs.getString("Return_date") + "\t Brand: " + rs.getString("Brand") +
-								"\t\t Sub_brand: " + rs.getString("Sub_brand")+ "\t Class: " + rs.getString("Class")
-								+ "\t Year_model: " + rs.getString("Year_model")+ "\t License_plate: " + rs.getString("License_plate")
-								+ "\t Price: " + rs.getString("Price")+ "\t Employee_ID: " + rs.getString("Id_employee"));
-					}while(rs.next());
+
 				break;
 
 			}
