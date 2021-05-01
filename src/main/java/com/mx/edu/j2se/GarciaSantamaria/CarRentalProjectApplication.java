@@ -36,11 +36,5 @@ public class CarRentalProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CarRentalProjectApplication.class, args);
 
-	//Test of the springBootApplication
-
-	/*@GetMapping("/hello")
-	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s!", name);
-		*/
 	}
 }
