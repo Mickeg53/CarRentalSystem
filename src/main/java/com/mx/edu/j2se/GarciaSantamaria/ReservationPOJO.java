@@ -10,13 +10,60 @@ public class ReservationPOJO {
     int Id_employee;
     int Id_client;
 
-    ReservationPOJO(int id_reservation, LocalDateTime start_date, LocalDateTime return_date, String license_plate, int id_employee, int id_client){
+    String Brand;
+    String Classs;
+    int Year_model;
+    double Price;
+
+    ReservationPOJO(int id_reservation, LocalDateTime start_date, LocalDateTime return_date, String license_plate, int id_employee, int id_client, String brand, String classs, int year_model, double price){
         this.Id_reservation = id_reservation;
         this.Start_date = start_date;
         this.Return_date = return_date;
         this.License_plate = license_plate;
         this.Id_employee = id_employee;
         this.Id_client = id_client;
+
+        this.Brand = brand;
+        this.Classs = classs;
+        this.Year_model = year_model;
+        this.Price = price;
+
+    }
+
+    public String getBrand() {
+        return Brand;
+    }
+
+    public void setBrand(String brand) {
+        Brand = brand;
+    }
+
+    public String getClasss() {
+        return Classs;
+    }
+
+    public void setClasss(String aClass) {
+        Classs = aClass;
+    }
+
+    public int getYear_model() {
+        return Year_model;
+    }
+
+    public void setYear_model(int year_model) {
+        Year_model = year_model;
+    }
+
+    public double getPrice() {
+        return Price;
+    }
+
+    public void setPrice(double price) {
+        Price = price;
+    }
+
+    public ReservationPOJO() {
+
     }
 
     public int getId_reservation() {
@@ -65,5 +112,21 @@ public class ReservationPOJO {
 
     public void setId_client(int id_client) {
         Id_client = id_client;
+    }
+
+    @Override
+    public String toString() {
+        return "ReservationPOJO{" +
+                "Id_reservation=" + Id_reservation +
+                ", Start_date=" + Start_date +
+                ", Return_date=" + Return_date +
+                ", License_plate='" + License_plate + '\'' +
+                ", Id_employee=" + Id_employee +
+                ", Id_client=" + Id_client +
+                ", Brand='" + Brand + '\'' +
+                ", Class='" + Classs + '\'' +
+                ", Year_model=" + Year_model +
+                ", Price=" + Price +
+                '}';
     }
 }

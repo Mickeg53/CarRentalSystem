@@ -17,6 +17,10 @@ public class CarPOJO {
         this.Price = price;
     }
 
+    public CarPOJO() {
+
+    }
+
     public String getLicense_plate() {
         return License_plate;
     }
@@ -61,7 +65,19 @@ public class CarPOJO {
         return Price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         Price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "CarPOJO{" +
+                "License_plate='" + License_plate + '\'' +
+                ", Brand='" + Brand + '\'' +
+                ", Sub_brand='" + Sub_brand + '\'' +
+                ", Class='" + Class + '\'' +
+                ", Year_model=" + Year_model +
+                ", Price=" + Price +
+                '}';
     }
 }

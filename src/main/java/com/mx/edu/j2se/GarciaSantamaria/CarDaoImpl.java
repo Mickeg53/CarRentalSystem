@@ -1,69 +1,54 @@
 package com.mx.edu.j2se.GarciaSantamaria;
 
-import java.sql.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class CarDaoImpl implements CarRentalProjectApplication.CarDaoInterface {
-    //Connection to database
-    String url = "jdbc:mysql://localhost:3306/carrentaldb";
-    String userName = "root";
-    String password = "123456789";
+@Component
+public class CarDaoImpl implements CarDaoInterface {
 
-    Statement stmt;
-    ResultSet rs;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<CarPOJO> getAllCarsAvailable(LocalDateTime startTime, LocalDateTime returnTime, String classs) {
-        List<CarPOJO> Cars;
-        try {
-            Connection connection = DriverManager.getConnection(url, userName, password);
+    public List<CarPOJO> getAllCarsAvailable(LocalDateTime start_date, LocalDateTime return_date, String classs) {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Connected to the database");
-
-            stmt = connection.createStatement();
-
-            rs = stmt.executeQuery("SELECT * FROM car c \n" +
-                    "\tLEFT JOIN reservation r USING (License_plate)\n" +
-                    "\t\tWHERE (Id_reservation IS NULL OR (r.Start_date > '"+returnTime+"' OR r.Return_date < '"+startTime+"')) AND c.Class = '"+classs+"'");
-            rs.next();
-            Cars = new ArrayList<CarPOJO>();
-            do{
-                System.out.println("LIST OF ALL CARS AVAILABLE BASED ON START/END && CLASS PARAMETERS");
-                System.out.println(rs.getString("License_plate") + "\t Brand: " + rs.getString("Brand") +
-                        "\t\t Sub_brand: " + rs.getString("Sub_brand")+ "\t Class: " + rs.getString("Class") +
-                        "\t Year_model: " + rs.getString("Year_model")+ "\t Price: " + rs.getString("Price"));
-
-                CarPOJO car = new CarPOJO(rs.getString("License_plate"), rs.getString("Brand"), rs.getString("Sub_brand"),
-                        rs.getString("Class"), rs.getInt("Year_model"), rs.getDouble("Price"));
-
-                Cars.add(car);
-            }while(rs.next());
-
-            connection.close();
-            return Cars;
-
-        } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("Database connection error !!");
-            e.printStackTrace();
-        }
-        return null;
+        String sql = "SELECT * FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > '"+start_date+"' OR r.Return_date < '"+return_date+"'))AND c.Class = '"+classs+"'";
+        return jdbcTemplate.query(sql, new carRowMapper());
     }
 
     @Override
-    public void save(CarPOJO carPOJO) {
-
+    public boolean save(CarPOJO carPOJO) {
+        String sql = "INSERT INTO car (License_plate, Brand, Sub_brand, Class, Year_model, Price) VALUES (?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, carPOJO.getLicense_plate(), carPOJO.getBrand(), carPOJO.getSub_brand(), carPOJO.getClasss(), carPOJO.getYear_model(), carPOJO.getPrice());
+        return true;
     }
 
     @Override
-    public void delete(CarPOJO carPOJO) {
-
+    public boolean delete(CarPOJO carPOJO) {
+        String sql = "DELETE FROM car WHERE License_plate=?";
+        jdbcTemplate.update(sql, carPOJO.getLicense_plate());
+        return true;
     }
 
     @Override
-    public void update(CarPOJO carPOJO) {
-
+    public boolean update(CarPOJO carPOJO) {
+        String sql = "UPDATE car SET License_plate=?, Price=? WHERE License_plate=?";
+        jdbcTemplate.update(sql, carPOJO.getLicense_plate(), carPOJO.getPrice(), carPOJO.getLicense_plate());
+        return true;
     }
 }
+

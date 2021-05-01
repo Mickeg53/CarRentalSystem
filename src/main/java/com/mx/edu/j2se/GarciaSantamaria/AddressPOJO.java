@@ -84,4 +84,18 @@ public class AddressPOJO {
     public void setPostalCode(int postalCode) {
         PostalCode = postalCode;
     }
+
+    @Override
+    public String toString() {
+        return "AddressPOJO{" +
+                "Id_address=" + Id_address +
+                ", Street='" + Street + '\'' +
+                ", OutDoorNumber=" + OutDoorNumber +
+                ", InDoorNumber=" + InDoorNumber +
+                ", Colony='" + Colony + '\'' +
+                ", State='" + State + '\'' +
+                ", Municipality='" + Municipality + '\'' +
+                ", PostalCode=" + PostalCode +
+                '}';
+    }
 }

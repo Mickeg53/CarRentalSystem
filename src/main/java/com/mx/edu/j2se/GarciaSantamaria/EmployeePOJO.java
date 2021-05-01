@@ -76,4 +76,17 @@ public class EmployeePOJO {
     public void setId_address(int id_address) {
         Id_address = id_address;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeePOJO{" +
+                "Id_employee=" + Id_employee +
+                ", Name='" + Name + '\'' +
+                ", MothersLastName='" + MothersLastName + '\'' +
+                ", LastName='" + LastName + '\'' +
+                ", PhoneNumber=" + PhoneNumber +
+                ", Email='" + Email + '\'' +
+                ", Id_address=" + Id_address +
+                '}';
+    }
 }
