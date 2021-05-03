@@ -1,4 +1,4 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.POJOs;
 
 public class CarPOJO {
     private String License_plate;

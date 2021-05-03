@@ -1,4 +1,6 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.Interfaces;
+
+import com.mx.edu.j2se.GarciaSantamaria.POJOs.ReservationPOJO;
 
 public interface ReservDaoInterface {
     public ReservationPOJO getReservationStatus(int reservationId);

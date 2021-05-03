@@ -1,19 +1,19 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.POJOs;
 
 import java.time.LocalDateTime;
 
 public class ReservationPOJO {
-    int Id_reservation;
-    LocalDateTime Start_date;
-    LocalDateTime Return_date;
-    String License_plate;
-    int Id_employee;
-    int Id_client;
+    private int Id_reservation;
+    private LocalDateTime Start_date;
+    private LocalDateTime Return_date;
+    private String License_plate;
+    private int Id_employee;
+    private int Id_client;
 
-    String Brand;
-    String Classs;
-    int Year_model;
-    double Price;
+    private String Brand;
+    private String Classs;
+    private int Year_model;
+    private double Price;
 
     ReservationPOJO(int id_reservation, LocalDateTime start_date, LocalDateTime return_date, String license_plate, int id_employee, int id_client, String brand, String classs, int year_model, double price){
         this.Id_reservation = id_reservation;

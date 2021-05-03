@@ -1,14 +1,14 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.POJOs;
 
 public class AddressPOJO {
-    int Id_address;
-    String Street;
-    int OutDoorNumber;
-    int InDoorNumber;
-    String Colony;
-    String State;
-    String Municipality;
-    int PostalCode;
+    private int Id_address;
+    private String Street;
+    private int OutDoorNumber;
+    private int InDoorNumber;
+    private String Colony;
+    private String State;
+    private String Municipality;
+    private int PostalCode;
 
     public AddressPOJO(int id_address, String street, int outDoorNumber, int inDoorNumber, String colony, String state, String municipality, int postalCode) {
         this.Id_address = id_address;
@@ -19,6 +19,10 @@ public class AddressPOJO {
         this.State = state;
         this.Municipality = municipality;
         this.PostalCode = postalCode;
+    }
+
+    public AddressPOJO() {
+
     }
 
     public int getId_address() {

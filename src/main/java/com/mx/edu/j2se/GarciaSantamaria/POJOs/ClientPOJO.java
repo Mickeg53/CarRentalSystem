@@ -1,18 +1,19 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.POJOs;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class EmployeePOJO {
-    int Id_employee;
-    String Name;
-    String MothersLastName;
-    String LastName;
-    BigInteger PhoneNumber;
-    String Email;
-    int Id_address;
+public class ClientPOJO {
+    private int Id_client;
+    private String Name;
+    private String MothersLastName;
+    private String LastName;
+    private BigDecimal PhoneNumber;
+    private String Email;
+    private int Id_address;
 
-    public EmployeePOJO(int id_employee, String name, String mothersLastName, String lastName, BigInteger phoneNumber, String email, int id_address) {
-        this.Id_employee = id_employee;
+    public ClientPOJO(int id_client, String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int id_address) {
+        this.Id_client = id_client;
         this.Name = name;
         this.MothersLastName = mothersLastName;
         this.LastName = lastName;
@@ -21,12 +22,16 @@ public class EmployeePOJO {
         this.Id_address = id_address;
     }
 
-    public int getId_employee() {
-        return Id_employee;
+    public ClientPOJO() {
+
     }
 
-    public void setId_employee(int id_employee) {
-        Id_employee = id_employee;
+    public int getId_client() {
+        return Id_client;
+    }
+
+    public void setId_client(int id_client) {
+        Id_client = id_client;
     }
 
     public String getName() {
@@ -53,11 +58,11 @@ public class EmployeePOJO {
         LastName = lastName;
     }
 
-    public BigInteger getPhoneNumber() {
+    public BigDecimal getPhoneNumber() {
         return PhoneNumber;
     }
 
-    public void setPhoneNumber(BigInteger phoneNumber) {
+    public void setPhoneNumber(BigDecimal phoneNumber) {
         PhoneNumber = phoneNumber;
     }
 
@@ -79,8 +84,8 @@ public class EmployeePOJO {
 
     @Override
     public String toString() {
-        return "EmployeePOJO{" +
-                "Id_employee=" + Id_employee +
+        return "ClientPOJO{" +
+                "Id_client=" + Id_client +
                 ", Name='" + Name + '\'' +
                 ", MothersLastName='" + MothersLastName + '\'' +
                 ", LastName='" + LastName + '\'' +

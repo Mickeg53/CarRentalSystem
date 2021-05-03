@@ -1,33 +1,32 @@
 package com.mx.edu.j2se.GarciaSantamaria;
 
+import com.mx.edu.j2se.GarciaSantamaria.Implementations.CarDaoImpl;
+import com.mx.edu.j2se.GarciaSantamaria.POJOs.CarPOJO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
-@RequestMapping(path = "/car")
+@Controller
 public class CarController {
 
     @Autowired
     private CarDaoImpl carDaoImpl;
 
-    @GetMapping
-    public String Check(){
-        return "BIENVENIDO A LA RENTA DE COCHES";
+    @RequestMapping(value = "/")
+    public String index(){
+        return "index";
     }
 
     @GetMapping(path = "/getAllCarsAvailable")
     public List<CarPOJO> getAllCarsAvailable(String start_datee, String return_datee, String classs) {
-        String start_dateee = "";
-        String return_dateee = "";
 
-        start_dateee = start_datee;
-        return_dateee = return_datee;
+        LocalDateTime start_date = LocalDateTime.parse(start_datee);
+        LocalDateTime return_date = LocalDateTime.parse(return_datee);
 
-        LocalDateTime start_date = LocalDateTime.parse(start_dateee);
-        LocalDateTime return_date = LocalDateTime.parse(return_dateee);
         return carDaoImpl.getAllCarsAvailable(start_date, return_date, classs);
     }
 

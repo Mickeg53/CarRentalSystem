@@ -1,4 +1,6 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.Interfaces;
+
+import com.mx.edu.j2se.GarciaSantamaria.POJOs.CarPOJO;
 
 import java.time.LocalDateTime;
 import java.util.List;

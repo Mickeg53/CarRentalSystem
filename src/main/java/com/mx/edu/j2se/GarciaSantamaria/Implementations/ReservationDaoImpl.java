@@ -1,11 +1,14 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.Implementations;
 
+import com.mx.edu.j2se.GarciaSantamaria.Interfaces.ReservDaoInterface;
+import com.mx.edu.j2se.GarciaSantamaria.Mappers.reservationRowMapper;
+import com.mx.edu.j2se.GarciaSantamaria.POJOs.ReservationPOJO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 
-@Component
+@Repository("ReservationDao")
 public class ReservationDaoImpl implements ReservDaoInterface {
 
     @Autowired

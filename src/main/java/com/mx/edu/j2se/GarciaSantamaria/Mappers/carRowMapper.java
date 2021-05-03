@@ -1,5 +1,6 @@
-package com.mx.edu.j2se.GarciaSantamaria;
+package com.mx.edu.j2se.GarciaSantamaria.Mappers;
 
+import com.mx.edu.j2se.GarciaSantamaria.POJOs.CarPOJO;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
