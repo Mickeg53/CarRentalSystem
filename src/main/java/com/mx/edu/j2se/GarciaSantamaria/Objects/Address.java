@@ -1,6 +1,8 @@
-package com.mx.edu.j2se.GarciaSantamaria.POJOs;
+package com.mx.edu.j2se.GarciaSantamaria.Objects;
 
-public class AddressPOJO {
+import java.util.Objects;
+
+public class Address {
     private int Id_address;
     private String Street;
     private int OutDoorNumber;
@@ -10,7 +12,7 @@ public class AddressPOJO {
     private String Municipality;
     private int PostalCode;
 
-    public AddressPOJO(int id_address, String street, int outDoorNumber, int inDoorNumber, String colony, String state, String municipality, int postalCode) {
+    public Address(int id_address, String street, int outDoorNumber, int inDoorNumber, String colony, String state, String municipality, int postalCode) {
         this.Id_address = id_address;
         this.Street = street;
         this.OutDoorNumber = outDoorNumber;
@@ -21,7 +23,7 @@ public class AddressPOJO {
         this.PostalCode = postalCode;
     }
 
-    public AddressPOJO() {
+    public Address() {
 
     }
 
@@ -101,5 +103,18 @@ public class AddressPOJO {
                 ", Municipality='" + Municipality + '\'' +
                 ", PostalCode=" + PostalCode +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Address)) return false;
+        Address address = (Address) o;
+        return getId_address() == address.getId_address() && getOutDoorNumber() == address.getOutDoorNumber() && getInDoorNumber() == address.getInDoorNumber() && getPostalCode() == address.getPostalCode() && getStreet().equals(address.getStreet()) && getColony().equals(address.getColony()) && getState().equals(address.getState()) && Objects.equals(getMunicipality(), address.getMunicipality());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId_address(), getStreet(), getOutDoorNumber(), getInDoorNumber(), getColony(), getState(), getMunicipality(), getPostalCode());
     }
 }

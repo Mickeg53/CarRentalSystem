@@ -1,17 +1,15 @@
-package com.mx.edu.j2se.GarciaSantamaria.Mappers;
+package com.mx.edu.j2se.GarciaSantamaria.RowMappers;
 
-import com.mx.edu.j2se.GarciaSantamaria.POJOs.CarPOJO;
-import com.mx.edu.j2se.GarciaSantamaria.POJOs.EmployeePOJO;
+import com.mx.edu.j2se.GarciaSantamaria.Objects.Employee;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeRowMapper implements RowMapper<EmployeePOJO> {
+public class EmployeeMap implements RowMapper<Employee> {
     @Override
-    public EmployeePOJO mapRow(ResultSet resultSet, int i) throws SQLException {
-        EmployeePOJO employeePOJO = new EmployeePOJO();
+    public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+        Employee employeePOJO = new Employee();
 
         employeePOJO.setId_employee(resultSet.getInt("Id_employee"));
         employeePOJO.setName(resultSet.getString("Name"));

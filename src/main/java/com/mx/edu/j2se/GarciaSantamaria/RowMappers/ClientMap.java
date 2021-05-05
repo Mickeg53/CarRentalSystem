@@ -1,17 +1,15 @@
-package com.mx.edu.j2se.GarciaSantamaria.Mappers;
+package com.mx.edu.j2se.GarciaSantamaria.RowMappers;
 
-import com.mx.edu.j2se.GarciaSantamaria.POJOs.CarPOJO;
-import com.mx.edu.j2se.GarciaSantamaria.POJOs.ClientPOJO;
+import com.mx.edu.j2se.GarciaSantamaria.Objects.Client;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ClientRowMapper implements RowMapper<ClientPOJO> {
+public class ClientMap implements RowMapper<Client> {
     @Override
-    public ClientPOJO mapRow(ResultSet resultSet, int i) throws SQLException {
-        ClientPOJO clientPOJOPOJO = new ClientPOJO();
+    public Client mapRow(ResultSet resultSet, int i) throws SQLException {
+        Client clientPOJOPOJO = new Client();
 
         clientPOJOPOJO.setId_client(resultSet.getInt("Id_client"));
         clientPOJOPOJO.setName(resultSet.getString("Name"));

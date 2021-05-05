@@ -1,8 +1,9 @@
-package com.mx.edu.j2se.GarciaSantamaria.POJOs;
+package com.mx.edu.j2se.GarciaSantamaria.Objects;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class ReservationPOJO {
+public class Reservation {
     private int Id_reservation;
     private LocalDateTime Start_date;
     private LocalDateTime Return_date;
@@ -15,7 +16,7 @@ public class ReservationPOJO {
     private int Year_model;
     private double Price;
 
-    ReservationPOJO(int id_reservation, LocalDateTime start_date, LocalDateTime return_date, String license_plate, int id_employee, int id_client, String brand, String classs, int year_model, double price){
+    public Reservation(int id_reservation, LocalDateTime start_date, LocalDateTime return_date, String license_plate, int id_employee, int id_client, String brand, String classs, int year_model, double price){
         this.Id_reservation = id_reservation;
         this.Start_date = start_date;
         this.Return_date = return_date;
@@ -62,7 +63,7 @@ public class ReservationPOJO {
         Price = price;
     }
 
-    public ReservationPOJO() {
+    public Reservation() {
 
     }
 
@@ -128,5 +129,18 @@ public class ReservationPOJO {
                 ", Year_model=" + Year_model +
                 ", Price=" + Price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Reservation)) return false;
+        Reservation that = (Reservation) o;
+        return getId_reservation() == that.getId_reservation() && getId_employee() == that.getId_employee() && getId_client() == that.getId_client() && getYear_model() == that.getYear_model() && Double.compare(that.getPrice(), getPrice()) == 0 && getStart_date().equals(that.getStart_date()) && getReturn_date().equals(that.getReturn_date()) && getLicense_plate().equals(that.getLicense_plate()) && Objects.equals(getBrand(), that.getBrand()) && Objects.equals(getClasss(), that.getClasss());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId_reservation(), getStart_date(), getReturn_date(), getLicense_plate(), getId_employee(), getId_client(), getBrand(), getClasss(), getYear_model(), getPrice());
     }
 }

@@ -1,6 +1,8 @@
-package com.mx.edu.j2se.GarciaSantamaria.POJOs;
+package com.mx.edu.j2se.GarciaSantamaria.Objects;
 
-public class CarPOJO {
+import java.util.Objects;
+
+public class Car {
     private String License_plate;
     private String Brand;
     private String Sub_brand;
@@ -8,7 +10,7 @@ public class CarPOJO {
     private int Year_model;
     private double Price;
 
-    CarPOJO(String license_plate, String brand, String sub_brand, String classs, int year_model, double price){
+    public Car(String license_plate, String brand, String sub_brand, String classs, int year_model, double price){
         this.License_plate = license_plate;
         this.Brand = brand;
         this.Sub_brand = sub_brand;
@@ -17,7 +19,7 @@ public class CarPOJO {
         this.Price = price;
     }
 
-    public CarPOJO() {
+    public Car() {
 
     }
 
@@ -79,5 +81,18 @@ public class CarPOJO {
                 ", Year_model=" + Year_model +
                 ", Price=" + Price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+        Car car = (Car) o;
+        return getYear_model() == car.getYear_model() && Double.compare(car.getPrice(), getPrice()) == 0 && getLicense_plate().equals(car.getLicense_plate()) && getBrand().equals(car.getBrand()) && getSub_brand().equals(car.getSub_brand()) && getClass().equals(car.getClass());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLicense_plate(), getBrand(), getSub_brand(), getClass(), getYear_model(), getPrice());
     }
 }

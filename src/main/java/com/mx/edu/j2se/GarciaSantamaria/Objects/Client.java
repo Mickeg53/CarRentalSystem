@@ -1,9 +1,9 @@
-package com.mx.edu.j2se.GarciaSantamaria.POJOs;
+package com.mx.edu.j2se.GarciaSantamaria.Objects;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.util.Objects;
 
-public class ClientPOJO {
+public class Client {
     private int Id_client;
     private String Name;
     private String MothersLastName;
@@ -12,7 +12,7 @@ public class ClientPOJO {
     private String Email;
     private int Id_address;
 
-    public ClientPOJO(int id_client, String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int id_address) {
+    public Client(int id_client, String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int id_address) {
         this.Id_client = id_client;
         this.Name = name;
         this.MothersLastName = mothersLastName;
@@ -22,7 +22,7 @@ public class ClientPOJO {
         this.Id_address = id_address;
     }
 
-    public ClientPOJO() {
+    public Client() {
 
     }
 
@@ -93,5 +93,18 @@ public class ClientPOJO {
                 ", Email='" + Email + '\'' +
                 ", Id_address=" + Id_address +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+        Client client = (Client) o;
+        return getId_client() == client.getId_client() && getId_address() == client.getId_address() && getName().equals(client.getName()) && Objects.equals(getMothersLastName(), client.getMothersLastName()) && getLastName().equals(client.getLastName()) && getPhoneNumber().equals(client.getPhoneNumber()) && getEmail().equals(client.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId_client(), getName(), getMothersLastName(), getLastName(), getPhoneNumber(), getEmail(), getId_address());
     }
 }
