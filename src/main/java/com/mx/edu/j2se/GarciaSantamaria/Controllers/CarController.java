@@ -1,25 +1,22 @@
-package Controllers;
+package com.mx.edu.j2se.GarciaSantamaria.Controllers;
 
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.CarDaoImpl;
+import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ClientDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
+import com.mx.edu.j2se.GarciaSantamaria.Objects.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Controller
+@RestController
 public class CarController {
 
     @Autowired
     private CarDaoImpl carDaoImpl;
-
-    @RequestMapping(value = "/")
-    public String index(){
-        return"index";
-    }
 
     @GetMapping(path = "/getAllCarsAvailable")
     public List<Car> getAllCarsAvailable(String startDatee, String returnDatee, String carClass) {

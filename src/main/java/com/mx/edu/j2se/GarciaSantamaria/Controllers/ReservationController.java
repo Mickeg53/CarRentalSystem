@@ -1,4 +1,4 @@
-package Controllers;
+package com.mx.edu.j2se.GarciaSantamaria.Controllers;
 
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ReservationDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Reservation;
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/reservation")
 public class ReservationController {
     @Autowired
     private ReservationDaoImpl reservationDaoImpl;
 
-    @GetMapping
+    @ResponseBody
+    @RequestMapping(value = "/reservations")
     public String check(){
         return "BIENVENIDO A LAS RESERVACIONES";
     }

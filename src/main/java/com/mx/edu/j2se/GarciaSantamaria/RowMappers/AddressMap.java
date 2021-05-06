@@ -14,8 +14,8 @@ public class AddressMap implements RowMapper<Address> {
 
         address.setId_address(resultSet.getInt("Id_address"));
         address.setStreet(resultSet.getString("Street"));
-        address.setOutDoorNumber(resultSet.getInt("OutDoorNumber"));
-        address.setInDoorNumber(resultSet.getInt("InDoorNumber"));
+        address.setOutDoorNumber(resultSet.getInt("Outdoor_number"));
+        address.setInDoorNumber(resultSet.getInt("Indoor_number"));
         address.setColony(resultSet.getString("Colony"));
         address.setState(resultSet.getString("State"));
         address.setMunicipality(resultSet.getString("Municipality"));

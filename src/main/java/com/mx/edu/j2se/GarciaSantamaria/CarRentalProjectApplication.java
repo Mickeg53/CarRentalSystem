@@ -9,12 +9,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
 import javax.sql.DataSource;
+
 
 @SpringBootApplication
 public class CarRentalProjectApplication {
@@ -41,26 +40,17 @@ public class CarRentalProjectApplication {
 
 		//MVC CONFIGURATION
         @EnableWebMvc
-        @ComponentScan
-        public class WebConfigMvc extends WebMvcConfigurerAdapter {
+        @ComponentScan("main")
+        public class WebConfigMvc implements WebMvcConfigurer {
 
-            @Bean
-            public ViewResolver viewResolver () {
-                InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-                viewResolver.setViewClass(JstlView.class);
-                viewResolver.setPrefix("/WEB-INF/jsp/"); //this is location you put jsp
-                viewResolver.setSuffix(".jsp");
-                return viewResolver;
-            }
-
-            @Override
-            public void configureViewResolvers(ViewResolverRegistry registry){
-                InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-                resolver.setPrefix("/WEB-INF/jsp/");
-                resolver.setSuffix(".jsp");
-                resolver.setViewClass(JstlView.class);
-                registry.viewResolver(resolver);
-            }
+			@Bean
+			public ViewResolver internalResourceViewResolver() {
+				InternalResourceViewResolver bean = new InternalResourceViewResolver();
+				bean.setViewClass(JstlView.class);
+				bean.setPrefix("/WEB-INF/jsp/");
+				bean.setSuffix(".jsp");
+				return bean;
+			}
         }
 
 	}

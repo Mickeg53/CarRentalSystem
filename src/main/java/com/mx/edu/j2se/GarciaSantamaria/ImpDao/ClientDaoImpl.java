@@ -16,7 +16,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public Client getClient(int clientId) {
-        String sql = String.format("SELECT * FROM client WHERE Id_client = %d", clientId);
+        String sql = String.format("SELECT * FROM client WHERE Id_Client = %d", clientId);
         return jdbcTemplate.queryForObject(sql, new Object[] {}, new ClientMap());
     }
 
