@@ -9,6 +9,7 @@ public class Car {
     private String classOfCar;
     private int yearModel;
     private double price;
+    private double overallPrice;
 
     public Car(String licenseplate, String brand, String subbrand, String classofcar, int yearmodel, double price){
         this.licensePlate = licenseplate;
@@ -69,6 +70,14 @@ public class Car {
 
     public void setPrice(double priceCar) {
         price = priceCar;
+    }
+
+    public double getOverallPrice() {
+        return overallPrice;
+    }
+
+    public void setOverallPrice(double overallPrice) {
+        this.overallPrice = overallPrice;
     }
 
     @Override

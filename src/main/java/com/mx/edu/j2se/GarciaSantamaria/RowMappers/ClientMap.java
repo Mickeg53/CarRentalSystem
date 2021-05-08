@@ -11,13 +11,13 @@ public class ClientMap implements RowMapper<Client> {
     public Client mapRow(ResultSet resultSet, int i) throws SQLException {
         Client clientPOJOPOJO = new Client();
 
-        clientPOJOPOJO.setId_client(resultSet.getInt("Id_client"));
+        clientPOJOPOJO.setIdClient(resultSet.getInt("Id_client"));
         clientPOJOPOJO.setName(resultSet.getString("Name"));
         clientPOJOPOJO.setMothersLastName(resultSet.getString("Mothers_last_name"));
         clientPOJOPOJO.setLastName(resultSet.getString("Last_name"));
         clientPOJOPOJO.setPhoneNumber(resultSet.getBigDecimal("Phone_number"));
         clientPOJOPOJO.setEmail(resultSet.getString("Email"));
-        clientPOJOPOJO.setId_address(resultSet.getInt("Id_address"));
+        clientPOJOPOJO.setIdAddress(resultSet.getInt("Id_address"));
 
         return clientPOJOPOJO;
     }

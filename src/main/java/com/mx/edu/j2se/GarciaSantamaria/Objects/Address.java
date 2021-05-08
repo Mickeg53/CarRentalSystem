@@ -3,104 +3,104 @@ package com.mx.edu.j2se.GarciaSantamaria.Objects;
 import java.util.Objects;
 
 public class Address {
-    private int Id_address;
-    private String Street;
-    private int OutDoorNumber;
-    private int InDoorNumber;
-    private String Colony;
-    private String State;
-    private String Municipality;
-    private int PostalCode;
+    private int idAddress;
+    private String street;
+    private int outDoorNumber;
+    private int inDoorNumber;
+    private String colony;
+    private String state;
+    private String municipality;
+    private int postalCode;
 
     public Address(String street, int outDoorNumber, int inDoorNumber, String colony, String state, String municipality, int postalCode) {
-        this.Street = street;
-        this.OutDoorNumber = outDoorNumber;
-        this.InDoorNumber = inDoorNumber;
-        this.Colony = colony;
-        this.State = state;
-        this.Municipality = municipality;
-        this.PostalCode = postalCode;
+        this.street = street;
+        this.outDoorNumber = outDoorNumber;
+        this.inDoorNumber = inDoorNumber;
+        this.colony = colony;
+        this.state = state;
+        this.municipality = municipality;
+        this.postalCode = postalCode;
     }
 
     public Address() {
 
     }
 
-    public int getId_address() {
-        return Id_address;
+    public int getIdAddress() {
+        return idAddress;
     }
 
-    public void setId_address(int id_address) {
-        Id_address = id_address;
+    public void setIdAddress(int idAddress) {
+        this.idAddress = idAddress;
     }
 
     public String getStreet() {
-        return Street;
+        return street;
     }
 
     public void setStreet(String street) {
-        Street = street;
+        this.street = street;
     }
 
     public int getOutDoorNumber() {
-        return OutDoorNumber;
+        return outDoorNumber;
     }
 
     public void setOutDoorNumber(int outDoorNumber) {
-        OutDoorNumber = outDoorNumber;
+        this.outDoorNumber = outDoorNumber;
     }
 
     public int getInDoorNumber() {
-        return InDoorNumber;
+        return inDoorNumber;
     }
 
     public void setInDoorNumber(int inDoorNumber) {
-        InDoorNumber = inDoorNumber;
+        this.inDoorNumber = inDoorNumber;
     }
 
     public String getColony() {
-        return Colony;
+        return colony;
     }
 
     public void setColony(String colony) {
-        Colony = colony;
+        this.colony = colony;
     }
 
     public String getState() {
-        return State;
+        return state;
     }
 
     public void setState(String state) {
-        State = state;
+        this.state = state;
     }
 
     public String getMunicipality() {
-        return Municipality;
+        return municipality;
     }
 
     public void setMunicipality(String municipality) {
-        Municipality = municipality;
+        this.municipality = municipality;
     }
 
     public int getPostalCode() {
-        return PostalCode;
+        return postalCode;
     }
 
     public void setPostalCode(int postalCode) {
-        PostalCode = postalCode;
+        this.postalCode = postalCode;
     }
 
     @Override
     public String toString() {
-        return "AddressPOJO{" +
-                "Id_address=" + Id_address +
-                ", Street='" + Street + '\'' +
-                ", OutDoorNumber=" + OutDoorNumber +
-                ", InDoorNumber=" + InDoorNumber +
-                ", Colony='" + Colony + '\'' +
-                ", State='" + State + '\'' +
-                ", Municipality='" + Municipality + '\'' +
-                ", PostalCode=" + PostalCode +
+        return "Address{" +
+                "idAddress=" + idAddress +
+                ", street='" + street + '\'' +
+                ", outDoorNumber=" + outDoorNumber +
+                ", inDoorNumber=" + inDoorNumber +
+                ", colony='" + colony + '\'' +
+                ", state='" + state + '\'' +
+                ", municipality='" + municipality + '\'' +
+                ", postalCode=" + postalCode +
                 '}';
     }
 
@@ -109,11 +109,11 @@ public class Address {
         if (this == o) return true;
         if (!(o instanceof Address)) return false;
         Address address = (Address) o;
-        return getId_address() == address.getId_address() && getOutDoorNumber() == address.getOutDoorNumber() && getInDoorNumber() == address.getInDoorNumber() && getPostalCode() == address.getPostalCode() && getStreet().equals(address.getStreet()) && getColony().equals(address.getColony()) && getState().equals(address.getState()) && Objects.equals(getMunicipality(), address.getMunicipality());
+        return getIdAddress() == address.getIdAddress() && getOutDoorNumber() == address.getOutDoorNumber() && getInDoorNumber() == address.getInDoorNumber() && getPostalCode() == address.getPostalCode() && getStreet().equals(address.getStreet()) && getColony().equals(address.getColony()) && getState().equals(address.getState()) && Objects.equals(getMunicipality(), address.getMunicipality());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId_address(), getStreet(), getOutDoorNumber(), getInDoorNumber(), getColony(), getState(), getMunicipality(), getPostalCode());
+        return Objects.hash(getIdAddress(), getStreet(), getOutDoorNumber(), getInDoorNumber(), getColony(), getState(), getMunicipality(), getPostalCode());
     }
 }

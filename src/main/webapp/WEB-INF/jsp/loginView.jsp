@@ -18,7 +18,7 @@
         <h4 align="center">${clientMessage}</h4>
         <div class="card" style="width: 18rem;">
             <div align="center">
-                <img src="LOGO.png" class="rounded" width="150" height="152" alt="carrentallogo"/>
+                <img src="jsp/LOGO.png" class="modal-dialog-centered" alt="carrentallogo"/>
             </div>
             <div class="card-body">
 
@@ -28,6 +28,7 @@
                     <input type="email" class="form-control" id="emailInput" name="email" required>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
+                <br/><br/>
                 <div class="mb-3">
                     <label for="inputID">Client ID</label>
                     <input type="number" class="form-control" id="inputID" name="clientId" required>

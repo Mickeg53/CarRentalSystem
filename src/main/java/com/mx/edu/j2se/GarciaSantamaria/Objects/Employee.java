@@ -4,94 +4,93 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Employee {
-    private int Id_employee;
-    private String Name;
-    private String MothersLastName;
-    private String LastName;
-    private BigDecimal PhoneNumber;
-    private String Email;
-    private int Id_address;
+    private int idEmployee;
+    private String name;
+    private String mothersLastName;
+    private String lastName;
+    private BigDecimal phoneNumber;
+    private String email;
+    private int idAddress;
 
-    public Employee(int id_employee, String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int id_address) {
-        this.Id_employee = id_employee;
-        this.Name = name;
-        this.MothersLastName = mothersLastName;
-        this.LastName = lastName;
-        this.PhoneNumber = phoneNumber;
-        this.Email = email;
-        this.Id_address = id_address;
+    public Employee(String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int idAddress) {
+        this.name = name;
+        this.mothersLastName = mothersLastName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.idAddress = idAddress;
     }
 
     public Employee() {
 
     }
 
-    public int getId_employee() {
-        return Id_employee;
+    public int getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setId_employee(int id_employee) {
-        Id_employee = id_employee;
+    public void setIdEmployee(int idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getMothersLastName() {
-        return MothersLastName;
+        return mothersLastName;
     }
 
     public void setMothersLastName(String mothersLastName) {
-        MothersLastName = mothersLastName;
+        this.mothersLastName = mothersLastName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public BigDecimal getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(BigDecimal phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
-    public int getId_address() {
-        return Id_address;
+    public int getIdAddress() {
+        return idAddress;
     }
 
-    public void setId_address(int id_address) {
-        Id_address = id_address;
+    public void setIdAddress(int idAddress) {
+        this.idAddress = idAddress;
     }
 
     @Override
     public String toString() {
-        return "EmployeePOJO{" +
-                "Id_employee=" + Id_employee +
-                ", Name='" + Name + '\'' +
-                ", MothersLastName='" + MothersLastName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", PhoneNumber=" + PhoneNumber +
-                ", Email='" + Email + '\'' +
-                ", Id_address=" + Id_address +
+        return "Employee{" +
+                "idEmployee=" + idEmployee +
+                ", name='" + name + '\'' +
+                ", mothersLastName='" + mothersLastName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", idAddress=" + idAddress +
                 '}';
     }
 
@@ -100,11 +99,11 @@ public class Employee {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return getId_employee() == employee.getId_employee() && getId_address() == employee.getId_address() && getName().equals(employee.getName()) && Objects.equals(getMothersLastName(), employee.getMothersLastName()) && getLastName().equals(employee.getLastName()) && getPhoneNumber().equals(employee.getPhoneNumber()) && getEmail().equals(employee.getEmail());
+        return getIdEmployee() == employee.getIdEmployee() && getIdAddress() == employee.getIdAddress() && getName().equals(employee.getName()) && getMothersLastName().equals(employee.getMothersLastName()) && getLastName().equals(employee.getLastName()) && getPhoneNumber().equals(employee.getPhoneNumber()) && getEmail().equals(employee.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId_employee(), getName(), getMothersLastName(), getLastName(), getPhoneNumber(), getEmail(), getId_address());
+        return Objects.hash(getIdEmployee(), getName(), getMothersLastName(), getLastName(), getPhoneNumber(), getEmail(), getIdAddress());
     }
 }

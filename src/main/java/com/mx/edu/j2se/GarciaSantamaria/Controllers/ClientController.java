@@ -55,12 +55,12 @@ public class ClientController {
         Address address = new Address(street, outDoorNumber, inDoorNumber, colony, state, municipality, postalCode);
         this.addressDaoImpl.save(address);
 
-        int idAddress = this.addressDaoImpl.getAddress(street, outDoorNumber, colony, state, postalCode).getId_address();
+        int idAddress = this.addressDaoImpl.getAddress(street, outDoorNumber, colony, state, postalCode).getIdAddress();
 
         Client client = new Client(name, mothersLastName, lastName, phoneNumber, email, idAddress);
         this.clientDaoImpl.save(client);
 
-        int clientId = this.clientDaoImpl.getClient(name, lastName, mothersLastName, email).getId_client();
+        int clientId = this.clientDaoImpl.getClient(name, lastName, mothersLastName, email).getIdClient();
         String message = String.format("*****YOUR SIGNUP HAS BEEN SUCESSFUL***** \n Client ID: %d",clientId );
         model.addAttribute("messageSignup", message);
         return "signupView";

@@ -11,13 +11,13 @@ public class EmployeeMap implements RowMapper<Employee> {
     public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
         Employee employeePOJO = new Employee();
 
-        employeePOJO.setId_employee(resultSet.getInt("Id_employee"));
+        employeePOJO.setIdEmployee(resultSet.getInt("Id_employee"));
         employeePOJO.setName(resultSet.getString("Name"));
         employeePOJO.setMothersLastName(resultSet.getString("Mothers_last_name"));
         employeePOJO.setLastName(resultSet.getString("Last_name"));
         employeePOJO.setPhoneNumber(resultSet.getBigDecimal("Phone_number"));
         employeePOJO.setEmail(resultSet.getString("Email"));
-        employeePOJO.setId_address(resultSet.getInt("Id_address"));
+        employeePOJO.setIdAddress(resultSet.getInt("Id_address"));
 
         return employeePOJO;
     }

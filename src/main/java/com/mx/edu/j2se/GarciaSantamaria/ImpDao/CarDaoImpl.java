@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.google.common.base.Joiner;
 
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,12 +25,27 @@ public class CarDaoImpl implements CarDao {
 
         String sql = "";
         //Conditional to return all available cars or available cars of a specific class
-        if(carClass == null || carClass.equals("")){
+        if(carClass == null || carClass.equals("....")){
             sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > '%s' OR r.Return_date < '%s'))", tto, ffrom);
         }else{
             sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > '%s' OR r.Return_date < '%s'))AND c.Class = '%s'", tto, ffrom, carClass);
         }
-        return jdbcTemplate.query(sql, new CarMap());
+
+        List<Car> carsAvailable = jdbcTemplate.query(sql, new CarMap());
+
+        Duration duration = Duration.between(ffrom, tto);
+        long diffHours = Math.abs(duration.toHours());
+        long diffDays = Math.abs(duration.toDays());
+        double completeDays = diffHours/24.00;
+
+        for(Car x : carsAvailable){
+            if(completeDays - diffDays > 0){
+                x.setOverallPrice((diffDays+1)*(x.getPrice()));
+            }else{
+                x.setOverallPrice(diffDays*(x.getPrice()));
+            }
+        }
+        return carsAvailable;
     }
 
     @Override

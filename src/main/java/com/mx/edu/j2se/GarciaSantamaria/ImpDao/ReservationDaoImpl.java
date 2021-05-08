@@ -23,9 +23,9 @@ public class ReservationDaoImpl implements ReservDao {
 
     @Override
     public void save(Reservation reservation) {
-        String sql = String.format("INSERT INTO reservation (Start_date, Return_date, License_plate, Id_employee, Id_client) VALUES (%s, %s, %s, %d, %d)",
-                reservation.getStart_date(), reservation.getReturn_date(), reservation.getLicense_plate(),
-                reservation.getId_employee(), reservation.getId_client());
+        String sql = String.format("INSERT INTO reservation (Start_date, Return_date, License_plate, Id_employee, Id_client) VALUES ('%s', '%s', '%s', %d, %d)",
+                reservation.getStartDate(), reservation.getReturnDate(), reservation.getLicensePlate(),
+                reservation.getIdEmployee(), reservation.getIdClient());
         jdbcTemplate.update(sql);
     }
 

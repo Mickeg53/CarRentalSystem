@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.Date;
 import java.util.List;
 
@@ -32,8 +34,12 @@ public class CarController {
         LocalDateTime returnDate = LocalDateTime.parse(endDateToParse);
 
         List<Car> carsAvailable = carDaoImpl.getAllCarsAvailable(starttDate, returnDate, carClass);
-
-        model.addAttribute("listOfCars",carsAvailable);
+        if(carsAvailable.isEmpty()){
+            String noCars = "*** SORRY, THERE ARE NO CARS AVAILABLE FOR THIS PERIOD OF TIME, BUT WE HAVE FOR ANOTHER PERIOD ***";
+            model.addAttribute("noCarsMessage", noCars);
+        }else{
+            model.addAttribute("listOfCars",carsAvailable);
+        }
         return "clientMenuView";
     }
 

@@ -44,7 +44,7 @@ public class AddressDaoImpl implements AddressDao {
     public void update(Address address) {
         String sql = String.format("UPDATE address SET Street='%s', Outdoor_number=%d, Indoor_number=%d, Colony='%s', State='%s', Municipality='%s', Postal_code=%d WHERE Id_address=%d",
                 address.getStreet(), address.getOutDoorNumber(), address.getInDoorNumber(), address.getColony(),
-                address.getState(), address.getMunicipality(), address.getPostalCode(), address.getId_address());
+                address.getState(), address.getMunicipality(), address.getPostalCode(), address.getIdAddress());
         jdbcTemplate.update(sql);
     }
 }

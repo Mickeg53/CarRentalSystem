@@ -30,7 +30,7 @@ public class ClientDaoImpl implements ClientDao {
     public void save(Client client) {
         String sql = String.format("INSERT INTO client (Name, Mothers_last_name, Last_name, Phone_number, Email, Id_address) VALUES ('%s', '%s', '%s', %f, '%s', %d)",
                 client.getName(), client.getMothersLastName(), client.getLastName(), client.getPhoneNumber(),
-                client.getEmail(), client.getId_address());
+                client.getEmail(), client.getIdAddress());
         jdbcTemplate.update(sql);
     }
 
@@ -43,7 +43,7 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public void update(Client client) {
         String sql = String.format("UPDATE client SET Phone_number=%f, Email='%s', Id_address=%d WHERE Id_client=%d",
-                client.getPhoneNumber(), client.getEmail(), client.getId_address(), client.getId_client());
+                client.getPhoneNumber(), client.getEmail(), client.getIdAddress(), client.getIdClient());
         jdbcTemplate.update(sql);
     }
 }

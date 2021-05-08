@@ -23,7 +23,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public void save(Employee employeePOJO) {
         String sql = String.format("INSERT INTO employee (Name, Last_name, Mothers_last_name, Phone_Number, Email, Id_address) VALUES (%s, %s, %s, %f, %s, %d)",
                 employeePOJO.getName(), employeePOJO.getLastName(), employeePOJO.getMothersLastName(),
-                employeePOJO.getPhoneNumber(), employeePOJO.getEmail(), employeePOJO.getId_address());
+                employeePOJO.getPhoneNumber(), employeePOJO.getEmail(), employeePOJO.getIdAddress());
         jdbcTemplate.update(sql);
     }
 
@@ -36,8 +36,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public void update(Employee employeePOJO) {
         String sql = String.format("UPDATE employee SET Phone_number=%f, Email=%s, Id_address=%d WHERE Id_employee=%d",
-                employeePOJO.getPhoneNumber(), employeePOJO.getEmail(), employeePOJO.getId_address(),
-                employeePOJO.getId_employee());
+                employeePOJO.getPhoneNumber(), employeePOJO.getEmail(), employeePOJO.getIdAddress(),
+                employeePOJO.getIdEmployee());
         jdbcTemplate.update(sql);
     }
 }

@@ -5,93 +5,93 @@ import java.math.BigInteger;
 import java.util.Objects;
 
 public class Client {
-    private int Id_client;
-    private String Name;
-    private String MothersLastName;
-    private String LastName;
-    private BigDecimal PhoneNumber;
-    private String Email;
-    private int Id_address;
+    private int idClient;
+    private String name;
+    private String mothersLastName;
+    private String lastName;
+    private BigDecimal phoneNumber;
+    private String email;
+    private int idAddress;
 
-    public Client(String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int id_address) {
-        this.Name = name;
-        this.MothersLastName = mothersLastName;
-        this.LastName = lastName;
-        this.PhoneNumber = phoneNumber;
-        this.Email = email;
-        this.Id_address = id_address;
+    public Client(String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int idAddress) {
+        this.name = name;
+        this.mothersLastName = mothersLastName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.idAddress = idAddress;
     }
 
     public Client() {
 
     }
 
-    public int getId_client() {
-        return Id_client;
+    public int getIdClient() {
+        return idClient;
     }
 
-    public void setId_client(int id_client) {
-        Id_client = id_client;
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getMothersLastName() {
-        return MothersLastName;
+        return mothersLastName;
     }
 
     public void setMothersLastName(String mothersLastName) {
-        MothersLastName = mothersLastName;
+        this.mothersLastName = mothersLastName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public BigDecimal getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(BigDecimal phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
-    public int getId_address() {
-        return Id_address;
+    public int getIdAddress() {
+        return idAddress;
     }
 
-    public void setId_address(int id_address) {
-        Id_address = id_address;
+    public void setIdAddress(int idAddress) {
+        this.idAddress = idAddress;
     }
 
     @Override
     public String toString() {
-        return "ClientPOJO{" +
-                "Id_client=" + Id_client +
-                ", Name='" + Name + '\'' +
-                ", MothersLastName='" + MothersLastName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", PhoneNumber=" + PhoneNumber +
-                ", Email='" + Email + '\'' +
-                ", Id_address=" + Id_address +
+        return "Client{" +
+                "idClient=" + idClient +
+                ", name='" + name + '\'' +
+                ", mothersLastName='" + mothersLastName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", idAddress=" + idAddress +
                 '}';
     }
 
@@ -100,11 +100,11 @@ public class Client {
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
         Client client = (Client) o;
-        return getId_client() == client.getId_client() && getId_address() == client.getId_address() && getName().equals(client.getName()) && Objects.equals(getMothersLastName(), client.getMothersLastName()) && getLastName().equals(client.getLastName()) && getPhoneNumber().equals(client.getPhoneNumber()) && getEmail().equals(client.getEmail());
+        return getIdClient() == client.getIdClient() && getIdAddress() == client.getIdAddress() && getName().equals(client.getName()) && getMothersLastName().equals(client.getMothersLastName()) && getLastName().equals(client.getLastName()) && getPhoneNumber().equals(client.getPhoneNumber()) && getEmail().equals(client.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId_client(), getName(), getMothersLastName(), getLastName(), getPhoneNumber(), getEmail(), getId_address());
+        return Objects.hash(getIdClient(), getName(), getMothersLastName(), getLastName(), getPhoneNumber(), getEmail(), getIdAddress());
     }
 }

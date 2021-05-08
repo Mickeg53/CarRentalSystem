@@ -12,7 +12,7 @@ public class AddressMap implements RowMapper<Address> {
     public Address mapRow(ResultSet resultSet, int i) throws SQLException {
         Address address = new Address();
 
-        address.setId_address(resultSet.getInt("Id_address"));
+        address.setIdAddress(resultSet.getInt("Id_address"));
         address.setStreet(resultSet.getString("Street"));
         address.setOutDoorNumber(resultSet.getInt("Outdoor_number"));
         address.setInDoorNumber(resultSet.getInt("Indoor_number"));
