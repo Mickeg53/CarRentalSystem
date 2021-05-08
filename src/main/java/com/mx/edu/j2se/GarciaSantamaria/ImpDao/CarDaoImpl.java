@@ -11,7 +11,6 @@ import com.google.common.base.Joiner;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.StringJoiner;
 
 
 @Repository("CarDao")
@@ -21,14 +20,14 @@ public class CarDaoImpl implements CarDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Car> getAllCarsAvailable(LocalDateTime ffrom, LocalDateTime tto, String Class) {
+    public List<Car> getAllCarsAvailable(LocalDateTime ffrom, LocalDateTime tto, String carClass) {
 
         String sql = "";
         //Conditional to return all available cars or available cars of a specific class
-        if(Class == null || Class.equals("")){
-            sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > %s OR r.Return_date < %s))", tto, ffrom);
+        if(carClass == null || carClass.equals("")){
+            sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > '%s' OR r.Return_date < '%s'))", tto, ffrom);
         }else{
-            sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > %s OR r.Return_date < %s))AND c.Class = %s", tto, ffrom, Class);
+            sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > '%s' OR r.Return_date < '%s'))AND c.Class = '%s'", tto, ffrom, carClass);
         }
         return jdbcTemplate.query(sql, new CarMap());
     }
@@ -36,8 +35,8 @@ public class CarDaoImpl implements CarDao {
     @Override
     public void save(Car car) {
         String sql = Joiner.on(',').join("INSERT INTO car (License_plate, Brand, Sub_brand, Class, Year_model, Price) VALUES (",
-                car.getLicense_plate(),",", car.getBrand(), ",", car.getSub_brand(), ",",
-                car.getClasss(), ",",car.getYear_model(), ",", car.getPrice(),")");
+                car.getLicensePlate(),",", car.getBrand(), ",", car.getSubBrand(), ",",
+                car.getClassOfCar(), ",",car.getYearModel(), ",", car.getPrice(),")");
 
         jdbcTemplate.update(sql);
     }
@@ -50,7 +49,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public void update(Car car) {
-        String sql = String.format("UPDATE car SET License_plate=%s, Price=%f WHERE License_plate=%s", car.getLicense_plate(), car.getPrice(), car.getLicense_plate());
+        String sql = String.format("UPDATE car SET License_plate=%s, Price=%f WHERE License_plate=%s", car.getLicensePlate(), car.getPrice(), car.getLicensePlate());
         jdbcTemplate.update(sql);
     }
 }

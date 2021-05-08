@@ -12,8 +12,7 @@ public class Address {
     private String Municipality;
     private int PostalCode;
 
-    public Address(int id_address, String street, int outDoorNumber, int inDoorNumber, String colony, String state, String municipality, int postalCode) {
-        this.Id_address = id_address;
+    public Address(String street, int outDoorNumber, int inDoorNumber, String colony, String state, String municipality, int postalCode) {
         this.Street = street;
         this.OutDoorNumber = outDoorNumber;
         this.InDoorNumber = inDoorNumber;

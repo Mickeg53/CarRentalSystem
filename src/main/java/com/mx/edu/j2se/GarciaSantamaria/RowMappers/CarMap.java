@@ -11,11 +11,11 @@ public class CarMap implements RowMapper<Car> {
     public Car mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Car car = new Car();
 
-        car.setLicense_plate(resultSet.getString("License_plate"));
+        car.setLicensePlate(resultSet.getString("License_plate"));
         car.setBrand(resultSet.getString("Brand"));
-        car.setSub_brand(resultSet.getString("Sub_brand"));
+        car.setSubBrand(resultSet.getString("Sub_brand"));
         car.setClass(resultSet.getString("Class"));
-        car.setYear_model(resultSet.getInt("Year_model"));
+        car.setYearModel(resultSet.getInt("Year_model"));
         car.setPrice(resultSet.getDouble("Price"));
 
         return car;

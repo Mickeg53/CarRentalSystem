@@ -3,9 +3,10 @@ package com.mx.edu.j2se.GarciaSantamaria.Controllers;
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ReservationDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class ReservationController {
     @Autowired
     private ReservationDaoImpl reservationDaoImpl;
@@ -16,12 +17,12 @@ public class ReservationController {
         return "BIENVENIDO A LAS RESERVACIONES";
     }
 
-    @GetMapping(path = "/getReservationStatus")
+    @RequestMapping(path = "/getReservationStatus")
     public Reservation getReservationStatus(int reservationId) {
         return reservationDaoImpl.getReservationStatus(reservationId);
     }
 
-    @PostMapping(path = "/saveReservation")
+    @RequestMapping(path = "/saveReservation")
     public void save(Reservation reservation) {
         this.reservationDaoImpl.save(reservation);
     }

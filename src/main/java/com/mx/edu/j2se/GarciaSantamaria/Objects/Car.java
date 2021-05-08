@@ -3,83 +3,83 @@ package com.mx.edu.j2se.GarciaSantamaria.Objects;
 import java.util.Objects;
 
 public class Car {
-    private String License_plate;
-    private String Brand;
-    private String Sub_brand;
-    private String Class;
-    private int Year_model;
-    private double Price;
+    private String licensePlate;
+    private String brand;
+    private String subBrand;
+    private String classOfCar;
+    private int yearModel;
+    private double price;
 
-    public Car(String license_plate, String brand, String sub_brand, String classs, int year_model, double price){
-        this.License_plate = license_plate;
-        this.Brand = brand;
-        this.Sub_brand = sub_brand;
-        this.Class = classs;
-        this.Year_model = year_model;
-        this.Price = price;
+    public Car(String licenseplate, String brand, String subbrand, String classofcar, int yearmodel, double price){
+        this.licensePlate = licenseplate;
+        this.brand = brand;
+        this.subBrand = subbrand;
+        this.classOfCar = classofcar;
+        this.yearModel = yearmodel;
+        this.price = price;
     }
 
     public Car() {
 
     }
 
-    public String getLicense_plate() {
-        return License_plate;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
-    public void setLicense_plate(String license_plate) {
-        License_plate = license_plate;
+    public void setLicensePlate(String licenseplate) {
+        licensePlate = licenseplate;
     }
 
     public String getBrand() {
-        return Brand;
+        return brand;
     }
 
-    public void setBrand(String brand) {
-        Brand = brand;
+    public void setBrand(String brandd) {
+        brand = brandd;
     }
 
-    public String getSub_brand() {
-        return Sub_brand;
+    public String getSubBrand() {
+        return subBrand;
     }
 
-    public void setSub_brand(String sub_brand) {
-        Sub_brand = sub_brand;
+    public void setSubBrand(String subbrand) {
+        subBrand = subbrand;
     }
 
-    public String getClasss() {
-        return Class;
+    public String getClassOfCar() {
+        return classOfCar;
     }
 
-    public void setClass(String aClass) {
-        Class = aClass;
+    public void setClass(String ClassOfCar) {
+        classOfCar = ClassOfCar;
     }
 
-    public int getYear_model() {
-        return Year_model;
+    public int getYearModel() {
+        return yearModel;
     }
 
-    public void setYear_model(int year_model) {
-        Year_model = year_model;
+    public void setYearModel(int yearmodel) {
+        yearModel = yearmodel;
     }
 
     public double getPrice() {
-        return Price;
+        return price;
     }
 
-    public void setPrice(double price) {
-        Price = price;
+    public void setPrice(double priceCar) {
+        price = priceCar;
     }
 
     @Override
     public String toString() {
         return "CarPOJO{" +
-                "License_plate='" + License_plate + '\'' +
-                ", Brand='" + Brand + '\'' +
-                ", Sub_brand='" + Sub_brand + '\'' +
-                ", Class='" + Class + '\'' +
-                ", Year_model=" + Year_model +
-                ", Price=" + Price +
+                "License_plate='" + licensePlate + '\'' +
+                ", Brand='" + brand + '\'' +
+                ", Sub_brand='" + subBrand + '\'' +
+                ", Class='" + classOfCar + '\'' +
+                ", Year_model=" + yearModel +
+                ", Price=" + price +
                 '}';
     }
 
@@ -88,11 +88,11 @@ public class Car {
         if (this == o) return true;
         if (!(o instanceof Car)) return false;
         Car car = (Car) o;
-        return getYear_model() == car.getYear_model() && Double.compare(car.getPrice(), getPrice()) == 0 && getLicense_plate().equals(car.getLicense_plate()) && getBrand().equals(car.getBrand()) && getSub_brand().equals(car.getSub_brand()) && getClass().equals(car.getClass());
+        return getYearModel() == car.getYearModel() && Double.compare(car.getPrice(), getPrice()) == 0 && getLicensePlate().equals(car.getLicensePlate()) && getBrand().equals(car.getBrand()) && getSubBrand().equals(car.getSubBrand()) && getClass().equals(car.getClass());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getLicense_plate(), getBrand(), getSub_brand(), getClass(), getYear_model(), getPrice());
+        return Objects.hash(getLicensePlate(), getBrand(), getSubBrand(), getClass(), getYearModel(), getPrice());
     }
 }

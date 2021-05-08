@@ -9,25 +9,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 public class CarController {
 
     @Autowired
     private CarDaoImpl carDaoImpl;
 
-    @GetMapping(path = "/getAllCarsAvailable")
-    public List<Car> getAllCarsAvailable(String startDatee, String returnDatee, String carClass) {
+    @RequestMapping(path = "/getAllCarsAvailable")
+    public String getAllCarsAvailable(String startDate, String startTime, String carClass, String endDate, String endTime, Model model) {
 
-        LocalDateTime startDate = LocalDateTime.parse(startDatee);
-        LocalDateTime returnDate = LocalDateTime.parse(returnDatee);
+        String startDateToParse = String.format("%sT%s:00", startDate, endTime);
+        String endDateToParse = String.format("%sT%s:00", endDate, endTime);
 
-        return carDaoImpl.getAllCarsAvailable(startDate, returnDate, carClass);
+        LocalDateTime starttDate = LocalDateTime.parse(startDateToParse);
+        LocalDateTime returnDate = LocalDateTime.parse(endDateToParse);
+
+        List<Car> carsAvailable = carDaoImpl.getAllCarsAvailable(starttDate, returnDate, carClass);
+        System.out.println(carsAvailable);
+        model.addAttribute("listOfCars",carsAvailable);
+        return "clientMenuView";
     }
 
-    @PostMapping(path = "/saveCar")
+    @RequestMapping(path = "/saveCar")
     public void saveCar(Car car){
         this.carDaoImpl.save(car);
         System.out.println(car);
@@ -38,7 +48,7 @@ public class CarController {
         this.carDaoImpl.delete(carLicensePlate);
     }
 
-    @PutMapping(path = "/updateCar")
+    @RequestMapping(path = "/updateCar")
     public void updateCar(Car car){  //WE ARE NOT DOING ANY VALIDATION
         this.carDaoImpl.update(car);
     }

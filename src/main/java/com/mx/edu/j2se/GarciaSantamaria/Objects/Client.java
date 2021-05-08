@@ -1,6 +1,7 @@
 package com.mx.edu.j2se.GarciaSantamaria.Objects;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Objects;
 
 public class Client {
@@ -12,8 +13,7 @@ public class Client {
     private String Email;
     private int Id_address;
 
-    public Client(int id_client, String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int id_address) {
-        this.Id_client = id_client;
+    public Client(String name, String mothersLastName, String lastName, BigDecimal phoneNumber, String email, int id_address) {
         this.Name = name;
         this.MothersLastName = mothersLastName;
         this.LastName = lastName;
