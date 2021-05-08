@@ -34,7 +34,7 @@ public class ClientController {
 
         if(clientTempPojo.getEmail().equals(email)){
             message =String.format("NICE TO SEE YOU HERE, %s %s !", clientTempPojo.getName(), clientTempPojo.getLastName());
-            model.addAttribute("clientMessage", message);
+            model.addAttribute("clientWelcomeMessage", message);
             return "clientMenuView";
         }else{
             message = "***THE DATA PROVIDED IS INCORRECT, PLEASE TRY AGAIN***";

@@ -32,7 +32,7 @@ public class CarController {
         LocalDateTime returnDate = LocalDateTime.parse(endDateToParse);
 
         List<Car> carsAvailable = carDaoImpl.getAllCarsAvailable(starttDate, returnDate, carClass);
-        System.out.println(carsAvailable);
+
         model.addAttribute("listOfCars",carsAvailable);
         return "clientMenuView";
     }

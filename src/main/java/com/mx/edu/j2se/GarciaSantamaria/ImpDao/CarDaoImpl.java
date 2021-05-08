@@ -26,7 +26,6 @@ public class CarDaoImpl implements CarDao {
         //Conditional to return all available cars or available cars of a specific class
         if(carClass == null || carClass.equals("")){
             sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > '%s' OR r.Return_date < '%s'))", tto, ffrom);
-            System.out.println("Class = "+carClass);
         }else{
             sql = String.format("SELECT c.Brand, c.Sub_brand, c.Class, c.Year_model, c.License_plate, c.Price FROM car c LEFT JOIN reservation r USING(License_plate) WHERE (Id_reservation IS NULL OR (r.Start_date > '%s' OR r.Return_date < '%s'))AND c.Class = '%s'", tto, ffrom, carClass);
         }

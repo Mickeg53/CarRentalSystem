@@ -14,7 +14,7 @@
 <body>
 <h1 align="center">WELCOME TO THE CAR RENTAL</h1>
 <hr>
-<h2 align="center">${clientMessage}</h2>
+<h2 align="center">${clientWelcomeMessage}</h2>
 <br/>
 <h4>Enter departure and return dates to search for available cars. </h4>
 <br/>
@@ -51,6 +51,7 @@
         <input type="time" class="form-control" id="endTimeInput" name="endTime" required>
     </div>
     <hr>
+    <h5 align="center">${noCarsMessage}</h5>
     <div>
         <table border="1" class="table caption-top">
             <caption>List of cars available</caption>
