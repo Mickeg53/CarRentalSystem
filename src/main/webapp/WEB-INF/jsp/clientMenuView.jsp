@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-2">
         <label for="class" class="form-label">Class of car:</label>
-        <select class="form-select" id="class" name="class" required>
+        <select class="form-select" id="class" name="carClass" required>
             <option selected disabled value="">Choose...</option>
             <option>....</option>
             <option>Compact</option>
@@ -55,14 +55,15 @@
         <table border="1" class="table caption-top">
             <caption>List of cars available</caption>
             <thead>
-            <tr>
-                <td>LICENSE PLATE</td>
-                <td>BRAND</td>
-                <td>SUB BRAND</td>
-                <td>CLASS</td>
-                <td>YEAR MODEL</td>
-                <td>PRICE PER DAY</td>
-            </tr>
+                <tr>
+                    <td>LICENSE PLATE</td>
+                    <td>BRAND</td>
+                    <td>SUB BRAND</td>
+                    <td>CLASS</td>
+                    <td>YEAR MODEL</td>
+                    <td>PRICE PER DAY</td>
+                    <td>OVERALL PRICE</td>
+                </tr>
             </thead>
             <c:forEach var="car" items="${listOfCars}">
                 <tr>
@@ -71,14 +72,13 @@
                     <td>${car.subBrand}</td>
                     <td>${car.classOfCar}</td>
                     <td>${car.yearModel}</td>
-                    <td>${car.price}</td>
+                    <td>$${car.price}</td>
                 </tr>
             </c:forEach>
         </table>
     </div>
 
     <div align="center">
-        <br/>
         <button type="submit" class="btn btn-primary" name="btnFind" value="findBtn">Find</button>
     </div>
 </form>

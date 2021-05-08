@@ -25,7 +25,7 @@ public class CarController {
     @RequestMapping(path = "/getAllCarsAvailable")
     public String getAllCarsAvailable(String startDate, String startTime, String carClass, String endDate, String endTime, Model model) {
 
-        String startDateToParse = String.format("%sT%s:00", startDate, endTime);
+        String startDateToParse = String.format("%sT%s:00", startDate, startTime);
         String endDateToParse = String.format("%sT%s:00", endDate, endTime);
 
         LocalDateTime starttDate = LocalDateTime.parse(startDateToParse);
