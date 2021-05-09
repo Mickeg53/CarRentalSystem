@@ -16,6 +16,7 @@ public class ReservationMap implements RowMapper<Reservation> {
         reservation.setReturnDate(rs.getDate("Return_date").toLocalDate().atTime(rs.getTime("Return_date").toLocalTime()));
         reservation.setLicensePlate(rs.getString("License_plate"));
         reservation.setIdClient(rs.getInt("Id_client"));
+        reservation.setOverallPrice(rs.getDouble("Overall_price"));
 
         return reservation;
     }

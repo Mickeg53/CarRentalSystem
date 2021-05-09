@@ -25,6 +25,8 @@ public class CarController {
 
     LocalDateTime universalStartDate;
     LocalDateTime universalReturnDate;
+    List<Car> universalCarList;
+    double overallPrice;
 
     @Autowired
     private CarDaoImpl carDaoImpl;
@@ -41,27 +43,39 @@ public class CarController {
         universalStartDate = LocalDateTime.parse(startDateToParse);
         universalReturnDate = LocalDateTime.parse(endDateToParse);
 
-        List<Car> carsAvailable = carDaoImpl.getAllCarsAvailable(universalStartDate, universalReturnDate, carClass);
-        if(carsAvailable.isEmpty()){
+        universalCarList = carDaoImpl.getAllCarsAvailable(universalStartDate, universalReturnDate, carClass);
+        if(universalCarList.isEmpty()){
             String noCars = "*** SORRY, THERE ARE NO CARS AVAILABLE FOR THIS PERIOD OF TIME, BUT WE HAVE FOR ANOTHER PERIOD ***";
             model.addAttribute("noCarsMessage", noCars);
         }else{
-            model.addAttribute("listOfCars",carsAvailable);
+            model.addAttribute("listOfCars",universalCarList);
         }
         return "clientMenuView";
     }
 
     @RequestMapping(path = "/saveReservation")
     public String save(String licensePlate, int idClient, Model model) {
-        Reservation reservation = new Reservation(universalStartDate, universalReturnDate, licensePlate, idClient);
-        String message;
 
+        for(Car x : universalCarList){
+            if(x.getLicensePlate().equals(licensePlate)) {
+                overallPrice = x.getOverallPrice();
+                System.out.println(overallPrice);
+            }
+        }
+
+        Reservation reservation = new Reservation(universalStartDate, universalReturnDate, licensePlate, idClient, overallPrice);
+
+        String message;
+        String idMessage = null;
         if(this.reservationDaoImpl.save(reservation)){
             message = "***SUCCESSFUL RESERVATION***";
+            int reservationId = this.reservationDaoImpl.getReservation(universalStartDate, universalReturnDate, licensePlate, idClient).getIdReservation();
+            idMessage = String.format("PLEASE SAVE YOUR RESERVATION NUMBER: %d", reservationId);
         }else{
             message = "***YOU ALREADY HAVE A PENDING RESERVATION, THANK YOU FOR UNDERSTANDING***";
         }
         model.addAttribute("sucessMessage", message);
+        model.addAttribute("messageId", idMessage);
         return "clientMenuView";
     }
 

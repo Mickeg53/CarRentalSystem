@@ -67,13 +67,13 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public void delete(int carLicensePlate) {
-        String sql = String.format("DELETE FROM car WHERE License_plate = %s", carLicensePlate);
+        String sql = String.format("DELETE FROM car WHERE License_plate = '%s'", carLicensePlate);
         jdbcTemplate.update(sql);
     }
 
     @Override
     public void update(Car car) {
-        String sql = String.format("UPDATE car SET License_plate=%s, Price=%f WHERE License_plate=%s", car.getLicensePlate(), car.getPrice(), car.getLicensePlate());
+        String sql = String.format("UPDATE car SET License_plate='%s', Price=%f WHERE License_plate='%s'", car.getLicensePlate(), car.getPrice(), car.getLicensePlate());
         jdbcTemplate.update(sql);
     }
 }

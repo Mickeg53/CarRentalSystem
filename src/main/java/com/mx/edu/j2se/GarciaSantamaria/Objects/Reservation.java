@@ -9,12 +9,14 @@ public class Reservation {
     private LocalDateTime returnDate;
     private String licensePlate;
     private int idClient;
+    private double overallPrice;
 
-    public Reservation(LocalDateTime startDate, LocalDateTime returnDate, String licensePlate, int idClient) {
+    public Reservation(LocalDateTime startDate, LocalDateTime returnDate, String licensePlate, int idClient, double OverallPrice) {
         this.startDate = startDate;
         this.returnDate = returnDate;
         this.licensePlate = licensePlate;
         this.idClient = idClient;
+        this.overallPrice = OverallPrice;
     }
 
     public Reservation() {
@@ -59,6 +61,14 @@ public class Reservation {
 
     public void setIdClient(int idClient) {
         this.idClient = idClient;
+    }
+
+    public double getOverallPrice() {
+        return overallPrice;
+    }
+
+    public void setOverallPrice(double overallPrice) {
+        this.overallPrice = overallPrice;
     }
 
     @Override
