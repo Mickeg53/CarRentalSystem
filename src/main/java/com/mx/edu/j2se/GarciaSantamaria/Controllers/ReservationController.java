@@ -1,30 +1,34 @@
 package com.mx.edu.j2se.GarciaSantamaria.Controllers;
 
+import com.mx.edu.j2se.GarciaSantamaria.ImpDao.CarDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ReservationDaoImpl;
+import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @Controller
 public class ReservationController {
+
     @Autowired
     private ReservationDaoImpl reservationDaoImpl;
-
-    @ResponseBody
-    @RequestMapping(value = "/reservations")
-    public String check(){
-        return "BIENVENIDO A LAS RESERVACIONES";
-    }
+    @Autowired
+    private CarDaoImpl carDaoImpl;
 
     @RequestMapping(path = "/getReservationStatus")
-    public Reservation getReservationStatus(int reservationId) {
-        return reservationDaoImpl.getReservationStatus(reservationId);
-    }
+    public String getReservationStatus(int reservationId, Model model) {
+        Reservation reservation = reservationDaoImpl.getReservationStatus(reservationId);
 
-    @RequestMapping(path = "/saveReservation")
-    public void save(Reservation reservation) {
-        this.reservationDaoImpl.save(reservation);
+        Car car = carDaoImpl.getCar(reservation.getLicensePlate());
+
+        model.addAttribute("reservationStatus", reservation);
+        model.addAttribute("carReserved", car);
+
+        return "reservationStatusView";
     }
 
     @DeleteMapping(path = "/deleteReservation")

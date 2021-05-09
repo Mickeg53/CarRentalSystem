@@ -7,9 +7,10 @@ import com.mx.edu.j2se.GarciaSantamaria.Objects.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.math.BigDecimal;
-
 
 @Controller
 public class ClientController {
@@ -47,7 +48,8 @@ public class ClientController {
     public String save() {
         return "signupView";
     }
-    @RequestMapping(path = "/saveClient")
+
+    @GetMapping(path = "/saveClient")
     public String saveClient(String name, String lastName, String mothersLastName, String email, BigDecimal phoneNumber,
                              String street, int outDoorNumber, int inDoorNumber, String colony, String state,
                              String municipality, int postalCode, Model model) throws InterruptedException {
@@ -61,8 +63,10 @@ public class ClientController {
         this.clientDaoImpl.save(client);
 
         int clientId = this.clientDaoImpl.getClient(name, lastName, mothersLastName, email).getIdClient();
-        String message = String.format("*****YOUR SIGNUP HAS BEEN SUCESSFUL***** \n Client ID: %d",clientId );
+        String message = "*****YOUR SIGNUP HAS BEEN SUCESSFUL*****";
+        String idMessage = String.format("Please save your Client ID: %d", clientId);
         model.addAttribute("messageSignup", message);
+        model.addAttribute("idMessageSign", idMessage);
         return "signupView";
     }
 }

@@ -3,6 +3,7 @@ package com.mx.edu.j2se.GarciaSantamaria.ImpDao;
 import com.mx.edu.j2se.GarciaSantamaria.ApiDao.CarDao;
 import com.mx.edu.j2se.GarciaSantamaria.RowMappers.CarMap;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
+import com.mx.edu.j2se.GarciaSantamaria.RowMappers.ReservationMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -21,6 +22,13 @@ public class CarDaoImpl implements CarDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
+    public Car getCar(String licensePlate){
+        String sql = String.format("SELECT * FROM car WHERE License_plate = '%s'", licensePlate);
+        return jdbcTemplate.queryForObject(sql, new Object[] {}, new CarMap());
+    }
+
+
+        @Override
     public List<Car> getAllCarsAvailable(LocalDateTime ffrom, LocalDateTime tto, String carClass) {
 
         String sql = "";

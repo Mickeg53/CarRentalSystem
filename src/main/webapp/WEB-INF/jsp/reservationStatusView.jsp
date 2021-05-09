@@ -56,27 +56,27 @@
             <div class="card-body">
 
                 <form action="getClient">
-                <div class="form-group">
-                    <label for="emailInput"> Email address</label>
-                    <input type="email" class="form-control" id="emailInput" name="email" required>
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <br/>
-                <div class="mb-3">
-                    <label for="inputID">Client ID</label>
-                    <input type="number" class="form-control" id="inputID" name="clientId" required>
-                </div>
-                <div align="center">
+                    <div class="form-group">
+                        <label for="emailInput"> Email address</label>
+                        <input type="email" class="form-control" id="emailInput" name="email" required>
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
                     <br/>
-                    <button type="submit" class="btn btn-primary" name="btnSubmit" value="Submit">login</button>
-                    <br/>
-                </div>
+                    <div class="mb-3">
+                        <label for="inputID">Client ID</label>
+                        <input type="number" class="form-control" id="inputID" name="clientId" required>
+                    </div>
+                    <div align="center">
+                        <br/>
+                        <button type="submit" class="btn btn-primary" name="btnSubmit" value="Submit">login</button>
+                        <br/>
+                    </div>
                 </form>
 
                 <form action = "SignupView">
                     <div align="center">
-                    <br/>
-                    <button type="submit" class="btn btn-primary" name="btnRegister" value="Register">Register</button>
+                        <br/>
+                        <button type="submit" class="btn btn-primary" name="btnRegister" value="Register">Register</button>
                     </div>
                 </form>
 

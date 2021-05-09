@@ -2,8 +2,10 @@ package com.mx.edu.j2se.GarciaSantamaria.Controllers;
 
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.CarDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ClientDaoImpl;
+import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ReservationDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Client;
+import com.mx.edu.j2se.GarciaSantamaria.Objects.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +23,14 @@ import java.util.List;
 @Controller
 public class CarController {
 
+    LocalDateTime universalStartDate;
+    LocalDateTime universalReturnDate;
+
     @Autowired
     private CarDaoImpl carDaoImpl;
+
+    @Autowired
+    private ReservationDaoImpl reservationDaoImpl;
 
     @RequestMapping(path = "/getAllCarsAvailable")
     public String getAllCarsAvailable(String startDate, String startTime, String carClass, String endDate, String endTime, Model model) {
@@ -30,16 +38,30 @@ public class CarController {
         String startDateToParse = String.format("%sT%s:00", startDate, startTime);
         String endDateToParse = String.format("%sT%s:00", endDate, endTime);
 
-        LocalDateTime starttDate = LocalDateTime.parse(startDateToParse);
-        LocalDateTime returnDate = LocalDateTime.parse(endDateToParse);
+        universalStartDate = LocalDateTime.parse(startDateToParse);
+        universalReturnDate = LocalDateTime.parse(endDateToParse);
 
-        List<Car> carsAvailable = carDaoImpl.getAllCarsAvailable(starttDate, returnDate, carClass);
+        List<Car> carsAvailable = carDaoImpl.getAllCarsAvailable(universalStartDate, universalReturnDate, carClass);
         if(carsAvailable.isEmpty()){
             String noCars = "*** SORRY, THERE ARE NO CARS AVAILABLE FOR THIS PERIOD OF TIME, BUT WE HAVE FOR ANOTHER PERIOD ***";
             model.addAttribute("noCarsMessage", noCars);
         }else{
             model.addAttribute("listOfCars",carsAvailable);
         }
+        return "clientMenuView";
+    }
+
+    @RequestMapping(path = "/saveReservation")
+    public String save(String licensePlate, int idClient, Model model) {
+        Reservation reservation = new Reservation(universalStartDate, universalReturnDate, licensePlate, idClient);
+        String message;
+
+        if(this.reservationDaoImpl.save(reservation)){
+            message = "***SUCCESSFUL RESERVATION***";
+        }else{
+            message = "***YOU ALREADY HAVE A PENDING RESERVATION, THANK YOU FOR UNDERSTANDING***";
+        }
+        model.addAttribute("sucessMessage", message);
         return "clientMenuView";
     }
 
@@ -57,6 +79,14 @@ public class CarController {
     @RequestMapping(path = "/updateCar")
     public void updateCar(Car car){  //WE ARE NOT DOING ANY VALIDATION
         this.carDaoImpl.update(car);
+    }
+
+    public LocalDateTime getUniversalStartDate() {
+        return universalStartDate;
+    }
+
+    public LocalDateTime getUniversalReturnDate() {
+        return universalReturnDate;
     }
 
 }

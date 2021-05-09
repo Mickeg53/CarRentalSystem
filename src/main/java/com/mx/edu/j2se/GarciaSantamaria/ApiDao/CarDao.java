@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CarDao {
     List<Car> getAllCarsAvailable(LocalDateTime start_date, LocalDateTime return_date, String classs);
-
+    Car getCar(String licensePlate);
     void save(Car car);
     void delete(int carLicensePlate);
     void update(Car car);

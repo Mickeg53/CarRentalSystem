@@ -15,19 +15,19 @@
 <hr>
 <br/>
 
-<form action="saveClient" class="row g-1">
+<form action="saveClient" method="get" class="row g-1">
     <br/>
     <div class="col-md-3">
         <label for="nameInput" class="form-label">Name/s</label>
         <input type="text" class="form-control" id="nameInput" name="name" required>
     </div>
     <div class="col-md-3">
-        <label for="mothersLastNameInput" class="form-label">Mothers Last name</label>
-        <input type="text" class="form-control" id="mothersLastNameInput" name="mothersLastName" required>
-    </div>
-    <div class="col-md-3">
         <label for="lastNameInput" class="form-label">Last name</label>
         <input type="text" class="form-control" id="lastNameInput" name="lastName" required>
+    </div>
+    <div class="col-md-3">
+        <label for="mothersLastNameInput" class="form-label">Mothers Last name</label>
+        <input type="text" class="form-control" id="mothersLastNameInput" name="mothersLastName" required>
     </div>
     <br/>
     <div class="col-md-3">
@@ -122,8 +122,8 @@
         <button class="btn btn-primary" type="submit">SUBMIT FORM</button>
     </div>
 </form>
-<br/>
 <h4 align="center">${messageSignup}</h4>
+<h4 align="center">${idMessageSign}</h4>
 <form action = "/">
     <div align="center">
         <br/>

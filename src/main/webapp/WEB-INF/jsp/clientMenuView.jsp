@@ -46,22 +46,26 @@
         </div>
     </nav>
 </head>
-<body>
-<h1 align="center">WELCOME TO THE CAR RENTAL</h1>
-<h4 align="center">${clientWelcomeMessage}</h4>
+<body style="background-color: peru;">
+<h1 align="center"><em>WELCOME TO THE CAR RENTAL</em></h1>
+<h4 align="center"><i>${clientWelcomeMessage}</i></h4>
+<hr>
+<h5 align="center">${sucessMessage}</h5>
 <hr>
 <br/>
-<h5>Enter departure and return dates to search for available cars. </h5>
+<h6 align="center">ENTER DEPARTURE AND RETURN DATES TO SEARCH FOR AVAILABLE CARS. </h6>
 <br/>
 <form action="getAllCarsAvailable" class="row g-4">
     <div class="col-md-2">
         <label for="startDateInput" class="form-label">From:</label>
-        <input type="date" class="form-control" id="startDateInput" name="startDate" required>
+        <input type="date" class="form-control" id="startDateInput" name="startDate" value="<?php if(isset($_POST['startDate'])) ECHO $_POST['startDate']; ?>" required>
     </div>
+
     <div class="col-md-2">
         <label for="startTimeInput" class="form-label">At:</label>
         <input type="time" class="form-control" id="startTimeInput" name="startTime" required>
     </div>
+
     <div class="col-md-2">
         <label for="class" class="form-label">Class of car:</label>
         <select class="form-select" id="class" name="carClass" required>
@@ -76,11 +80,11 @@
             <option>VAN</option>
         </select>
     </div>
-    <br/>
     <div class="col-md-2">
         <label for="endDateInput" class="form-label">To:</label>
         <input type="date" class="form-control" id="endDateInput" name="endDate" required>
     </div>
+
     <div class="col-md-2">
         <label for="endTimeInput" class="form-label">At:</label>
         <input type="time" class="form-control" id="endTimeInput" name="endTime" required>
@@ -88,7 +92,7 @@
     <hr>
     <div>
         <caption>List of cars available</caption>
-        <table border="1" class="table table-dark table-striped">
+        <table border="24" class="table table-dark table-striped">
             <thead>
                 <tr>
                     <td>LICENSE PLATE</td>
@@ -98,7 +102,6 @@
                     <td>YEAR MODEL</td>
                     <td>PRICE PER DAY</td>
                     <td>OVERALL PRICE</td>
-                    <td>ACTION</td>
                 </tr>
             </thead>
             <c:forEach var="car" items="${listOfCars}">
@@ -110,22 +113,40 @@
                     <td>${car.yearModel}</td>
                     <td>$${car.price}</td>
                     <td>$${car.overallPrice}</td>
-                    <td>
-                        <form action="saveReservation">
-                            <button type="submit" class="btn btn-success">RESERVE</button>
-                        </form>
-                    </td>
                 </tr>
             </c:forEach>
         </table>
     </div>
     <h5 align="center">${noCarsMessage}</h5>
-
     <div align="center">
-        <button type="submit" class="btn btn-primary btn-lg">FIND</button>
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 120px;">FIND</button>
+    </div>
+    <br/>
+</form>
+
+<form action="saveReservation" class="row g-lg-4">
+    <div align="center">
+        <div class="col-md-2">
+            <label for="licensePlateInput" class="form-label">License Plate:</label>
+            <input type="text" class="form-control" id="licensePlateInput" name="licensePlate" required>
+        </div>
+
+        <div class="col-md-2">
+            <label for="clientIdInput" class="form-label">Client ID:</label>
+            <input type="number" class="form-control" id="clientIdInput" name="idClient" required>
+        </div>
+    </div>
+    <div align="center">
+        <button type="submit" class="btn btn-success" style="width: 120px;" >RESERVE</button>
     </div>
 </form>
-<h4 align="center">PAGE FOR ALL THE MENU: RESERVE CAR, VIEW CARS AVAILABLE, VIEW RESERVATION STATUS, VIEW CLIENT DATA</h4>
+<br/>
+<form action="getReservationStatus" class="row g-4">
+    <div align="center">
+        <button type="submit" class="btn btn-success" style="width: 240px;" >RESERVATION STATUS</button>
+    </div>
+</form>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 </body>
 </html>
