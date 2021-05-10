@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 
 @Controller
 public class ReservationController {
@@ -19,20 +18,33 @@ public class ReservationController {
     @Autowired
     private CarDaoImpl carDaoImpl;
 
+    int universalReservationId = 0;
+
     @RequestMapping(path = "/getReservationStatus")
     public String getReservationStatus(int reservationId, Model model) {
+        universalReservationId = reservationId;
         Reservation reservation = reservationDaoImpl.getReservationStatus(reservationId);
+        
+        String reservationInexistentMessage = null;
+        Car car = null;
 
-        Car car = carDaoImpl.getCar(reservation.getLicensePlate());
-
+        if(reservation == null){
+            reservationInexistentMessage = "***THE RESERVATION ENTERED DOES NOT EXIST, TRY WITH ANOTHER RESERVATION NUMBER***";
+        }else{
+            car = carDaoImpl.getCar(reservation.getLicensePlate());
+        }
         model.addAttribute("reservationStatus", reservation);
         model.addAttribute("carReserved", car);
+        model.addAttribute("inexistentReservation", reservationInexistentMessage);
 
         return "reservationStatusView";
     }
 
-    @DeleteMapping(path = "/deleteReservation")
-    public void delete(int reservationId) {
-        this.reservationDaoImpl.delete(reservationId);
+    @RequestMapping(path = "/deleteReservation")
+    public String delete(Model model) {
+        this.reservationDaoImpl.delete(universalReservationId);
+        String deleteMessage = "***CAR RETURNED SUCESSFULLY***";
+        model.addAttribute("deleteSucessfulMessage", deleteMessage);
+        return "reservationStatusView";
     }
 }

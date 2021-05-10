@@ -1,14 +1,11 @@
 package com.mx.edu.j2se.GarciaSantamaria.ImpDao;
 
 import com.mx.edu.j2se.GarciaSantamaria.ApiDao.ReservDao;
-import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
 import com.mx.edu.j2se.GarciaSantamaria.RowMappers.ReservationMap;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 
 
@@ -21,7 +18,12 @@ public class ReservationDaoImpl implements ReservDao {
     @Override
     public Reservation getReservationStatus(int reservationId) {
         String sql = String.format("SELECT r.Id_reservation, r.Id_client, r.Start_date, r.Return_date, r.License_plate, r.Overall_price FROM reservation r WHERE r.Id_reservation = %d", reservationId);
-        return jdbcTemplate.queryForObject(sql, new Object[] {}, new ReservationMap());
+        try{
+            return jdbcTemplate.queryForObject(sql, new Object[] {}, new ReservationMap());
+        }catch(Exception e){
+            System.out.println("No existe la reservación");
+        }
+        return null;
     }
 
     @Override

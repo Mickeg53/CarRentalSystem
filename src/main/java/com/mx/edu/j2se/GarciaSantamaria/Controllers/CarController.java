@@ -1,23 +1,14 @@
 package com.mx.edu.j2se.GarciaSantamaria.Controllers;
 
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.CarDaoImpl;
-import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ClientDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.ImpDao.ReservationDaoImpl;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
-import com.mx.edu.j2se.GarciaSantamaria.Objects.Client;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -74,6 +65,7 @@ public class CarController {
         }else{
             message = "***YOU ALREADY HAVE A PENDING RESERVATION, THANK YOU FOR UNDERSTANDING***";
         }
+
         model.addAttribute("sucessMessage", message);
         model.addAttribute("messageId", idMessage);
         return "clientMenuView";

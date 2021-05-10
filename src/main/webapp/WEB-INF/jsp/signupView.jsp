@@ -28,10 +28,15 @@
                                 Cars
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Compact</a></li>
+                                <li><a class="dropdown-item" href="#">Mid-size</a></li>
+                                <li><a class="dropdown-item" href="#">Large</a></li>
+                                <li><a class="dropdown-item" href="#">Cargo</a></li>
+                                <li><a class="dropdown-item" href="#">Pick-up</a></li>
+                                <li><a class="dropdown-item" href="https://www.autobild.es/reportajes/que-significa-palabra-suv-207808">SUV</a></li>
+                                <li><a class="dropdown-item" href="#">VAN</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Dynamics of car rental</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -52,7 +57,10 @@
     <body style="background-color: peru;">
 
         <h1 align="center">SIGNUP PAGE</h1>
-        <hr><hr>
+        <hr>
+        <h4 align="center">${messageSignup}</h4>
+        <h4 align="center">${idMessageSign}</h4>
+        <hr>
         <br/>
 
         <form action="saveClient" method="get" class="row g-1">
@@ -162,9 +170,6 @@
                 <button class="btn btn-primary" type="submit">SUBMIT FORM</button>
             </div>
         </form>
-        <h4 align="center">${messageSignup}</h4>
-        <h4 align="center">${idMessageSign}</h4>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     </body>
 </html>

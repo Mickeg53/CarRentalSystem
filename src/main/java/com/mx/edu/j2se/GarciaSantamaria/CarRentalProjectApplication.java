@@ -41,7 +41,7 @@ public class CarRentalProjectApplication {
 		//MVC CONFIGURATION
         @EnableWebMvc
         @ComponentScan("main")
-        public class WebConfigMvc implements WebMvcConfigurer {
+        public static class WebConfigMvc implements WebMvcConfigurer {
 
 			@Bean
 			public ViewResolver internalResourceViewResolver() {

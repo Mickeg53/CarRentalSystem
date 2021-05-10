@@ -13,7 +13,6 @@ public class ClientDaoImpl implements ClientDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
     @Override
     public Client getClient(int clientId) {
         String sql = String.format("SELECT * FROM client WHERE Id_Client = %d", clientId);

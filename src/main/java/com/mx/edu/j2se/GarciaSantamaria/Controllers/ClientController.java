@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.math.BigDecimal;
 
@@ -21,13 +20,14 @@ public class ClientController {
     @Autowired
     private AddressDaoImpl addressDaoImpl;
 
-    //ONLY FOR RETURN THE WELCOME PAGE
+    //ONLY FOR RETURN LOGIN PAGE
     @RequestMapping(value = "/")
     public String index(Model model){
         String name = "Miguel García Santamaría";
         model.addAttribute("myNameValue", name);
         return"loginView";
     }
+
     @RequestMapping(value = "/getClient")
     public String getClient(String email, int clientId, Model model){
         Client clientTempPojo = clientDaoImpl.getClient(clientId);

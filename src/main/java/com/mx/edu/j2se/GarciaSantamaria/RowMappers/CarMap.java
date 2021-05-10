@@ -2,7 +2,6 @@ package com.mx.edu.j2se.GarciaSantamaria.RowMappers;
 
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
 import org.springframework.jdbc.core.RowMapper;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

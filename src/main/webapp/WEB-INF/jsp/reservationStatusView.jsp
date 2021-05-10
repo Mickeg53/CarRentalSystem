@@ -9,7 +9,7 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
 
-        <title>Home</title>
+        <title>Reservation status</title>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -30,10 +30,15 @@
                                 Cars
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Compact</a></li>
+                                <li><a class="dropdown-item" href="#">Mid-size</a></li>
+                                <li><a class="dropdown-item" href="#">Large</a></li>
+                                <li><a class="dropdown-item" href="#">Cargo</a></li>
+                                <li><a class="dropdown-item" href="#">Pick-up</a></li>
+                                <li><a class="dropdown-item" href="https://www.autobild.es/reportajes/que-significa-palabra-suv-207808">SUV</a></li>
+                                <li><a class="dropdown-item" href="#">VAN</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Dynamics of car rental</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -57,7 +62,11 @@
             <div class="row justify-content-center">
 
                 <h1 align="center">RESERVATION STATUS</h1>
-                <hr><hr>
+                <hr>
+                <h5 align="center">${inexistentReservation}</h5>
+                <h5 align="center">${verifFailedMessage}</h5>
+                <h5 align="center">${deleteSucessfulMessage}</h5>
+                <hr>
 
                 <div>
                     <caption>Reservation details</caption>
@@ -91,9 +100,16 @@
                 </div>
 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success" style="width: 340px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-warning" style="width: 340px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     RETURN CAR
                 </button>
+
+                <form action = "deleteReservation">
+                    <div align="center">
+                        <br/>
+                        <button type="submit" class="btn btn-danger" style="width: 800px;" name="btnBack" value="Back to login">${verifSucessful}</button>
+                    </div>
+                </form>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -105,13 +121,17 @@
                             </div>
 
                             <div class="modal-body">
-                                <form action="getReservationStatus" class="row g-4">
+                                <form action="employeeVerification" class="row g-4">
                                     <div class="mb-2">
-                                        <label for="inputReservID">Reservation ID:</label>
-                                        <input type="number" class="form-control" id="inputReservID" name="reservationId" required>
+                                        <label for="inputReservID">Employee ID:</label>
+                                        <input type="number" class="form-control" id="inputReservID" name="employeeId" required>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="employeeEmail">Employee email:</label>
+                                        <input type="email" class="form-control" id="employeeEmail" name="email" required>
                                     </div>
                                     <div align="center">
-                                        <button type="submit" class="btn btn-primary" style="width: 120px;">Show details</button>
+                                        <button type="submit" class="btn btn-danger" style="width: 120px;">Verify</button>
                                     </div>
                                 </form>
                             </div>

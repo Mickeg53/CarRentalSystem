@@ -13,7 +13,6 @@ public class AddressDaoImpl implements AddressDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
     @Override
     public Address getAddress(int addressId) {
         String sql = String.format("SELECT * FROM address WHERE Id_address = %d", addressId);

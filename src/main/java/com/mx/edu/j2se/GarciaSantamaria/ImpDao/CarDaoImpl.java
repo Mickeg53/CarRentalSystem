@@ -3,17 +3,13 @@ package com.mx.edu.j2se.GarciaSantamaria.ImpDao;
 import com.mx.edu.j2se.GarciaSantamaria.ApiDao.CarDao;
 import com.mx.edu.j2se.GarciaSantamaria.RowMappers.CarMap;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Car;
-import com.mx.edu.j2se.GarciaSantamaria.RowMappers.ReservationMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.google.common.base.Joiner;
-
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Repository("CarDao")
 public class CarDaoImpl implements CarDao {
@@ -27,8 +23,7 @@ public class CarDaoImpl implements CarDao {
         return jdbcTemplate.queryForObject(sql, new Object[] {}, new CarMap());
     }
 
-
-        @Override
+    @Override
     public List<Car> getAllCarsAvailable(LocalDateTime ffrom, LocalDateTime tto, String carClass) {
 
         String sql = "";
