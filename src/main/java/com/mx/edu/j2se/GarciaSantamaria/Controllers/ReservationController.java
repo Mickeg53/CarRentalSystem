@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 @Controller
 public class ReservationController {
@@ -26,16 +29,22 @@ public class ReservationController {
         Reservation reservation = reservationDaoImpl.getReservationStatus(reservationId);
         
         String reservationInexistentMessage = null;
+        String outOfTime = null;
         Car car = null;
 
         if(reservation == null){
             reservationInexistentMessage = "***THE RESERVATION ENTERED DOES NOT EXIST, TRY WITH ANOTHER RESERVATION NUMBER***";
+            model.addAttribute("inexistentReservation", reservationInexistentMessage);
+            return "reservationStatusView";
         }else{
             car = carDaoImpl.getCar(reservation.getLicensePlate());
+            if(LocalDateTime.parse(reservation.getReturnDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")).isBefore(LocalDateTime.now())){
+                outOfTime = "-----------CAR OUT OF TIME, YOU MUST RETURN THE CAR-----------";
+            }
         }
         model.addAttribute("reservationStatus", reservation);
         model.addAttribute("carReserved", car);
-        model.addAttribute("inexistentReservation", reservationInexistentMessage);
+        model.addAttribute("outOfTimeMessage", outOfTime);
 
         return "reservationStatusView";
     }

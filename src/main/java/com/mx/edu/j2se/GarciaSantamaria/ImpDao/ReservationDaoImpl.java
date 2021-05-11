@@ -33,7 +33,13 @@ public class ReservationDaoImpl implements ReservDao {
     @Override
     public Reservation getReservation(LocalDateTime startDate, LocalDateTime returnDate, String licensePlate, int idClient){
         String sql = String.format("SELECT r.Id_reservation, r.Start_date, r.Return_date, r.License_plate, r.Id_client, r.Overall_price FROM reservation r WHERE r.Start_date = '%s' AND r.Return_date = '%s' AND r.License_plate = '%s' AND r.Id_client = %d ", startDate, returnDate, licensePlate, idClient);
-        return jdbcTemplate.queryForObject(sql, new Object[] {}, new ReservationMap());
+
+        try{
+            return jdbcTemplate.queryForObject(sql, new Object[] {}, new ReservationMap());
+        }catch(Exception e){
+            logger.info("THERE ARE NO EXISTING RESERVATION FOR THE DATA ENTERED, HANDLING EXCEPTION IN ReservationDaoImpl(getReservationStatus)");
+        }
+        return null;
     }
 
     @Override
@@ -53,6 +59,10 @@ public class ReservationDaoImpl implements ReservDao {
     @Override
     public void delete(int reservationId) {
         String sql = String.format("DELETE FROM reservation WHERE Id_reservation = %d", reservationId);
-        jdbcTemplate.update(sql);
+        try{
+            jdbcTemplate.update(sql);
+        }catch (Exception e){
+            logger.info("THERE WAS AN ERROR DURING THE DELETE OF RESERVATION, HANDLING EXCEPTION IN ReservationDaoImpl(delete())");
+        }
     }
 }

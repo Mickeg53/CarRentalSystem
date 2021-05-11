@@ -66,6 +66,7 @@
                 <h5 align="center">${inexistentReservation}</h5>
                 <h5 align="center">${verifFailedMessage}</h5>
                 <h5 align="center">${deleteSucessfulMessage}</h5>
+                <h5 align="center">${outOfTimeMessage}</h5>
                 <hr>
 
                 <div>

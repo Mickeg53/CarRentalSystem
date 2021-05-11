@@ -64,6 +64,7 @@
         <hr>
         <h5 align="center">${sucessMessage}</h5>
         <h5 align="center">${messageId}</h5>
+        <h5 align="center">${invalidDatesMessage}</h5>
         <hr>
         <br/>
         <h6 align="center">ENTER DEPARTURE AND RETURN DATES TO SEARCH FOR AVAILABLE CARS. </h6>

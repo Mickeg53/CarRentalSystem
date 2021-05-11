@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class Reservation {
     private int idReservation;
-    private LocalDateTime startDate;
-    private LocalDateTime returnDate;
+    private String startDate;
+    private String returnDate;
     private String licensePlate;
     private int idClient;
     private double overallPrice;
 
-    public Reservation(LocalDateTime startDate, LocalDateTime returnDate, String licensePlate, int idClient, double OverallPrice) {
+    public Reservation(String startDate, String returnDate, String licensePlate, int idClient, double OverallPrice) {
         this.startDate = startDate;
         this.returnDate = returnDate;
         this.licensePlate = licensePlate;
@@ -31,19 +31,19 @@ public class Reservation {
         this.idReservation = idReservation;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(LocalDateTime returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 
