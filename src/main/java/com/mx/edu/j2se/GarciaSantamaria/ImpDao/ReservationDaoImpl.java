@@ -21,7 +21,7 @@ public class ReservationDaoImpl implements ReservDao {
 
     @Override
     public Reservation getReservationStatus(int reservationId) {
-        String sql = String.format("SELECT r.Id_reservation, r.Id_client, r.Start_date, r.Return_date, r.License_plate, r.Overall_price FROM reservation r WHERE r.Id_reservation = %d", reservationId);
+        String sql = String.format("SELECT r.Id_reservation, r.Id_client, r.Start_date, r.Return_date, r.License_plate FROM reservation r WHERE r.Id_reservation = %d", reservationId);
         try{
             return jdbcTemplate.queryForObject(sql, new Object[] {}, new ReservationMap());
         }catch(Exception e){
@@ -32,7 +32,7 @@ public class ReservationDaoImpl implements ReservDao {
 
     @Override
     public Reservation getReservation(LocalDateTime startDate, LocalDateTime returnDate, String licensePlate, int idClient){
-        String sql = String.format("SELECT r.Id_reservation, r.Start_date, r.Return_date, r.License_plate, r.Id_client, r.Overall_price FROM reservation r WHERE r.Start_date = '%s' AND r.Return_date = '%s' AND r.License_plate = '%s' AND r.Id_client = %d ", startDate, returnDate, licensePlate, idClient);
+        String sql = String.format("SELECT r.Id_reservation, r.Start_date, r.Return_date, r.License_plate, r.Id_client FROM reservation r WHERE r.Start_date = '%s' AND r.Return_date = '%s' AND r.License_plate = '%s' AND r.Id_client = %d ", startDate, returnDate, licensePlate, idClient);
 
         try{
             return jdbcTemplate.queryForObject(sql, new Object[] {}, new ReservationMap());
@@ -44,9 +44,9 @@ public class ReservationDaoImpl implements ReservDao {
 
     @Override
     public boolean save(Reservation reservation) {
-        String sql = String.format("INSERT INTO reservation (Start_date, Return_date, License_plate, Id_client, Overall_price) VALUES ('%s', '%s', '%s', %d, %f)",
+        String sql = String.format("INSERT INTO reservation (Start_date, Return_date, License_plate, Id_client) VALUES ('%s', '%s', '%s', %d)",
                 reservation.getStartDate(), reservation.getReturnDate(),
-                reservation.getLicensePlate(), reservation.getIdClient(), reservation.getOverallPrice());
+                reservation.getLicensePlate(), reservation.getIdClient());
         try{
             jdbcTemplate.update(sql);
             return true;

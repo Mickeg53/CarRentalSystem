@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -31,6 +32,7 @@ public class ReservationController {
         String reservationInexistentMessage = null;
         String outOfTime = null;
         Car car = null;
+        double price = 0;
 
         if(reservation == null){
             reservationInexistentMessage = "***THE RESERVATION ENTERED DOES NOT EXIST, TRY WITH ANOTHER RESERVATION NUMBER***";
@@ -40,11 +42,24 @@ public class ReservationController {
             car = carDaoImpl.getCar(reservation.getLicensePlate());
             if(LocalDateTime.parse(reservation.getReturnDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")).isBefore(LocalDateTime.now())){
                 outOfTime = "-----------CAR OUT OF TIME, YOU MUST RETURN THE CAR-----------";
+            }else{
+                Duration duration = Duration.between(LocalDateTime.parse(reservation.getStartDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")), LocalDateTime.parse(reservation.getReturnDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+                long diffHours = Math.abs(duration.toHours());
+                long diffDays = Math.abs(duration.toDays());
+                double completeDays = diffHours/24.00;
+                
+                if(completeDays - diffDays > 0){
+                    price = (diffDays+1)*(car.getPrice());
+                }else{
+                    price = diffDays*(car.getPrice());
+                }
             }
+            
         }
         model.addAttribute("reservationStatus", reservation);
         model.addAttribute("carReserved", car);
         model.addAttribute("outOfTimeMessage", outOfTime);
+        model.addAttribute("overallPrice", price);
 
         return "reservationStatusView";
     }

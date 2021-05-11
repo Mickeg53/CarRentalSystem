@@ -95,7 +95,7 @@
                             <td>${carReserved.classOfCar}</td>
                             <td>${carReserved.yearModel}</td>
                             <td>$${carReserved.price}</td>
-                            <td>$${reservationStatus.overallPrice}</td>
+                            <td>$${overallPrice}</td>
                         </tr>
                     </table>
                 </div>

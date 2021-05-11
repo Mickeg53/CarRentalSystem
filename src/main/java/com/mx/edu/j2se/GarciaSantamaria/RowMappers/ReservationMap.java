@@ -25,7 +25,6 @@ public class ReservationMap implements RowMapper<Reservation> {
 
         reservation.setLicensePlate(rs.getString("License_plate"));
         reservation.setIdClient(rs.getInt("Id_client"));
-        reservation.setOverallPrice(rs.getDouble("Overall_price"));
 
         return reservation;
     }

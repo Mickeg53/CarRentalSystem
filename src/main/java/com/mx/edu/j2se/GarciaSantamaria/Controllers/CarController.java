@@ -62,7 +62,7 @@ public class CarController {
             }
         }
 
-        Reservation reservation = new Reservation(universalStartDate.format(formatter), universalReturnDate.format(formatter), licensePlate, idClient, overallPrice);
+        Reservation reservation = new Reservation(universalStartDate.format(formatter), universalReturnDate.format(formatter), licensePlate, idClient);
 
         String message;
         String idMessage = null;
