@@ -87,12 +87,4 @@ public class CarController {
         this.carDaoImpl.update(car);
     }
 
-    public LocalDateTime getUniversalStartDate() {
-        return universalStartDate;
-    }
-
-    public LocalDateTime getUniversalReturnDate() {
-        return universalReturnDate;
-    }
-
 }

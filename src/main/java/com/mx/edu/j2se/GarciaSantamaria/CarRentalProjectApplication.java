@@ -1,5 +1,7 @@
 package com.mx.edu.j2se.GarciaSantamaria;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import javax.sql.DataSource;
-
 
 @SpringBootApplication
 public class CarRentalProjectApplication {
@@ -55,8 +56,11 @@ public class CarRentalProjectApplication {
 
 	}
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(CarRentalProjectApplication.class, args);
 
+		Logger logger = LoggerFactory.getLogger(CarRentalProjectApplication.class);
+		logger.info("HELLO WORLD, THE PROJECT IS RUNNIG");
 	}
 }

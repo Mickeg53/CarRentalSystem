@@ -1,5 +1,7 @@
 package com.mx.edu.j2se.GarciaSantamaria.ImpDao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.mx.edu.j2se.GarciaSantamaria.ApiDao.ReservDao;
 import com.mx.edu.j2se.GarciaSantamaria.RowMappers.ReservationMap;
 import com.mx.edu.j2se.GarciaSantamaria.Objects.Reservation;
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 @Repository("ReservationDao")
 public class ReservationDaoImpl implements ReservDao {
 
+    private static final Logger logger = LoggerFactory.getLogger(ReservationDaoImpl.class);
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -21,7 +25,7 @@ public class ReservationDaoImpl implements ReservDao {
         try{
             return jdbcTemplate.queryForObject(sql, new Object[] {}, new ReservationMap());
         }catch(Exception e){
-            System.out.println("No existe la reservación");
+            logger.info("THERE ARE NO EXISTING RESERVATION FOR THE ID ENTERED, HANDLING EXCEPTION IN ReservationDaoImpl(getReservationStatus)");
         }
         return null;
     }
@@ -41,6 +45,7 @@ public class ReservationDaoImpl implements ReservDao {
             jdbcTemplate.update(sql);
             return true;
         }catch (Exception e){
+            logger.info("THERE IS  A RESERVATION FOR THE CLIENT ENTERED, HANDLING EXCEPTION IN ReservationDaoImpl(save)");
             return false;
         }
     }

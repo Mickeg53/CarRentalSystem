@@ -90,7 +90,7 @@
                 <div class="card" style="width: 18rem;">
                     <%--LOGO IMAGE--%>
                     <div align="center">
-                        <img src="jsp/LOGO.png" class="modal-dialog-centered" alt="carrentallogo" style="width:128px;height:128px;">
+                        <img src="car_Rental_Logo.png" class="modal-dialog-centered" alt="carrentallogo" style="width:128px;height:128px;">
                     </div>
                     <%--CARD BODY--%>
                     <div class="card-body">
